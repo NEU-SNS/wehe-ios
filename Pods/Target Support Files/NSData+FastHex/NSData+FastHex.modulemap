@@ -1,0 +1,6 @@
+framework module NSData_FastHex {
+  umbrella header "NSData+FastHex-umbrella.h"
+
+  export *
+  module * { export * }
+}

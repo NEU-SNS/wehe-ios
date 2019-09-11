@@ -1,0 +1,959 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		454DE44821E6AB99009368BA /* SpotifyRandom_01042019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 454DE44221E6AB98009368BA /* SpotifyRandom_01042019.pcap_client_all.json */; };
+		454DE44921E6AB99009368BA /* AmazonRandom_01042019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 454DE44321E6AB98009368BA /* AmazonRandom_01042019.pcap_client_all.json */; };
+		454DE44A21E6AB99009368BA /* Amazon_01042019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 454DE44421E6AB98009368BA /* Amazon_01042019.pcap_client_all.json */; };
+		454DE44B21E6AB99009368BA /* NBCSports_01042019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 454DE44521E6AB98009368BA /* NBCSports_01042019.pcap_client_all.json */; };
+		454DE44C21E6AB99009368BA /* Spotify_01042019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 454DE44621E6AB99009368BA /* Spotify_01042019.pcap_client_all.json */; };
+		454DE44D21E6AB99009368BA /* NBCSportsRandom_01042019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 454DE44721E6AB99009368BA /* NBCSportsRandom_01042019.pcap_client_all.json */; };
+		862349872039E7270033EAC3 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862349862039E7270033EAC3 /* LocalizedStrings.swift */; };
+		86C489C02040CABA00696F83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86C489BE2040CABA00696F83 /* Localizable.strings */; };
+		86C489C42040CB2500696F83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86C489C22040CB2500696F83 /* InfoPlist.strings */; };
+		86C489CA2040CF7900696F83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C489C82040CF7800696F83 /* Main.storyboard */; };
+		86C489CB2040CF7900696F83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C489C92040CF7900696F83 /* LaunchScreen.storyboard */; };
+		8E3090052B2E022D0AC0CCCF /* Pods_weheTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EFF14C6F7B49C0EFD13E29 /* Pods_weheTests.framework */; };
+		960202D321C2D5E1001ADBFC /* VimeoRandom_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202C421C2D5E0001ADBFC /* VimeoRandom_12122018.pcap_client_all.json */; };
+		960202D421C2D5E1001ADBFC /* Vimeo_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202C521C2D5E0001ADBFC /* Vimeo_12122018.pcap_client_all.json */; };
+		960202D521C2D5E1001ADBFC /* YoutubeRandom_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202C621C2D5E1001ADBFC /* YoutubeRandom_12122018.pcap_client_all.json */; };
+		960202D621C2D5E1001ADBFC /* Netflix_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202C721C2D5E1001ADBFC /* Netflix_12122018.pcap_client_all.json */; };
+		960202D721C2D5E1001ADBFC /* NetflixRandom_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202C821C2D5E1001ADBFC /* NetflixRandom_12122018.pcap_client_all.json */; };
+		960202D821C2D5E1001ADBFC /* Skype_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202C921C2D5E1001ADBFC /* Skype_12122018.pcap_client_all.json */; };
+		960202D921C2D5E1001ADBFC /* Youtube_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202CA21C2D5E1001ADBFC /* Youtube_12122018.pcap_client_all.json */; };
+		960202DD21C2D5E1001ADBFC /* SkypeRandom_12122018.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 960202CE21C2D5E1001ADBFC /* SkypeRandom_12122018.pcap_client_all.json */; };
+		96024AE81FBE096C00DE860D /* String+removingWhitespaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96024AE71FBE096C00DE860D /* String+removingWhitespaces.swift */; };
+		9608473A1F62F523006CD661 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960847391F62F523006CD661 /* AppDelegate.swift */; };
+		9608473C1F62F523006CD661 /* ConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9608473B1F62F523006CD661 /* ConsentViewController.swift */; };
+		960847411F62F523006CD661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 960847401F62F523006CD661 /* Assets.xcassets */; };
+		9608474F1F62F523006CD661 /* weheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9608474E1F62F523006CD661 /* weheTests.swift */; };
+		9614766A218CD49D002A9299 /* FunctionalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96147669218CD49D002A9299 /* FunctionalityViewController.swift */; };
+		96192E4E2273702100BE6A19 /* HuluRandom_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 96192E442273702000BE6A19 /* HuluRandom_04112019.pcap_client_all.json */; };
+		96192E4F2273702100BE6A19 /* Hulu_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 96192E452273702100BE6A19 /* Hulu_04112019.pcap_client_all.json */; };
+		96192E502273702100BE6A19 /* Twitch_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 96192E462273702100BE6A19 /* Twitch_04112019.pcap_client_all.json */; };
+		96192E512273702100BE6A19 /* TwitchRandom_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 96192E472273702100BE6A19 /* TwitchRandom_04112019.pcap_client_all.json */; };
+		96192E532273702100BE6A19 /* FacebookVideo_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 96192E492273702100BE6A19 /* FacebookVideo_04112019.pcap_client_all.json */; };
+		96192E552273702100BE6A19 /* FacebookVideoRandom_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 96192E4B2273702100BE6A19 /* FacebookVideoRandom_04112019.pcap_client_all.json */; };
+		961ED3A2224546E700099FBF /* ca.pfx in Resources */ = {isa = PBXBuildFile; fileRef = 961ED3A1224546E700099FBF /* ca.pfx */; };
+		961ED3A4224546EF00099FBF /* ca.der in Resources */ = {isa = PBXBuildFile; fileRef = 961ED3A3224546EF00099FBF /* ca.der */; };
+		9624D0571F66FF1000B13A30 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624D0561F66FF1000B13A30 /* Settings.swift */; };
+		9624D05D1F68427D00B13A30 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624D05C1F68427D00B13A30 /* App.swift */; };
+		9624D0601F684D2B00B13A30 /* app_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 9624D05F1F684D2B00B13A30 /* app_list.json */; };
+		9624D0621F68778400B13A30 /* ReplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624D0611F68778400B13A30 /* ReplayViewController.swift */; };
+		9624D0681F69908A00B13A30 /* ReplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624D0671F69908A00B13A30 /* ReplayTableViewCell.swift */; };
+		9624D0711F69CC2F00B13A30 /* Sidechannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624D0701F69CC2F00B13A30 /* Sidechannel.swift */; };
+		962C58F01FA7AEEF004218D4 /* ResultWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962C58EF1FA7AEEF004218D4 /* ResultWatcher.swift */; };
+		96423BC82154128200A888A4 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96423BC72154128200A888A4 /* MainMenuViewController.swift */; };
+		9649F17C1FA8DF4C00A5A160 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9649F17B1FA8DF4C00A5A160 /* Result.swift */; };
+		964E943D1F631E4500EA78F8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E943C1F631E4500EA78F8 /* SettingsViewController.swift */; };
+		9657C6B3218105C700D44024 /* MoreInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9657C6B2218105C700D44024 /* MoreInfoTableViewController.swift */; };
+		9657C6B52181074800D44024 /* DPIInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9657C6B42181074800D44024 /* DPIInfoTableViewCell.swift */; };
+		9657C6B7218108BC00D44024 /* BitrateInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9657C6B6218108BC00D44024 /* BitrateInfoTableViewCell.swift */; };
+		965BFA751F87F3E30049C53F /* ReplayRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BFA741F87F3E30049C53F /* ReplayRunner.swift */; };
+		965BFA771F8D56BF0049C53F /* Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BFA761F8D56BF0049C53F /* Replay.swift */; };
+		965BFA791F8D5B2F0049C53F /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BFA781F8D5B2E0049C53F /* Packet.swift */; };
+		9678670C1F8EB32800BE6C3B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9678670B1F8EB32800BE6C3B /* Helper.swift */; };
+		967867121F8FCC3800BE6C3B /* Replayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967867111F8FCC3800BE6C3B /* Replayer.swift */; };
+		96821FE21FD7106D0067F196 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96821FE11FD7106D0067F196 /* WebViewController.swift */; };
+		9683E05C218A36C5003778F0 /* AboutWeheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683E05B218A36C5003778F0 /* AboutWeheViewController.swift */; };
+		9688013E2188B16400C5152D /* DPIAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688013D2188B16400C5152D /* DPIAnalysisViewController.swift */; };
+		968801412188B42A00C5152D /* ReplayViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968801402188B42A00C5152D /* ReplayViewProtocol.swift */; };
+		968CA3812272390C004D2D9B /* MetaDataChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968CA3802272390C004D2D9B /* MetaDataChannel.swift */; };
+		969AAE69227CBB310047BD03 /* WhatsApp_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 969AAE65227CBB310047BD03 /* WhatsApp_04112019.pcap_client_all.json */; };
+		969AAE6A227CBB310047BD03 /* WhatsAppRandom_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 969AAE66227CBB310047BD03 /* WhatsAppRandom_04112019.pcap_client_all.json */; };
+		969AAE6B227CBB310047BD03 /* AppleMusic_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 969AAE67227CBB310047BD03 /* AppleMusic_04112019.pcap_client_all.json */; };
+		969AAE6C227CBB310047BD03 /* AppleMusicRandom_04112019.pcap_client_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 969AAE68227CBB310047BD03 /* AppleMusicRandom_04112019.pcap_client_all.json */; };
+		96B5333D214FF78300A24ACC /* AppCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B5333C214FF78300A24ACC /* AppCollectionViewController.swift */; };
+		96B53340214FF97300A24ACC /* AppCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B5333F214FF97300A24ACC /* AppCollectionViewCell.swift */; };
+		96CA60721FABA8AD0067DFF7 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA60711FABA8AD0067DFF7 /* ResultTableViewController.swift */; };
+		96CA60741FABB50C0067DFF7 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA60731FABB50C0067DFF7 /* ResultTableViewCell.swift */; };
+		96FEC05D1F97BF7D009016CA /* PortMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FEC05C1F97BF7C009016CA /* PortMapping.swift */; };
+		FA0877AB7A354BDADA0F4C95 /* Pods_wehe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE5A92D42DC1AC4896A47879 /* Pods_wehe.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9608474B1F62F523006CD661 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9608472E1F62F523006CD661 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 960847351F62F523006CD661;
+			remoteInfo = wehe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		017C5DBA3F9E50FF2CE4B21B /* Pods-wehe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wehe.release.xcconfig"; path = "Pods/Target Support Files/Pods-wehe/Pods-wehe.release.xcconfig"; sourceTree = "<group>"; };
+		38EFF14C6F7B49C0EFD13E29 /* Pods_weheTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_weheTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		454DE44221E6AB98009368BA /* SpotifyRandom_01042019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SpotifyRandom_01042019.pcap_client_all.json; path = Replay_files/SpotifyRandom_01042019.pcap_client_all.json; sourceTree = "<group>"; };
+		454DE44321E6AB98009368BA /* AmazonRandom_01042019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AmazonRandom_01042019.pcap_client_all.json; path = Replay_files/AmazonRandom_01042019.pcap_client_all.json; sourceTree = "<group>"; };
+		454DE44421E6AB98009368BA /* Amazon_01042019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Amazon_01042019.pcap_client_all.json; path = Replay_files/Amazon_01042019.pcap_client_all.json; sourceTree = "<group>"; };
+		454DE44521E6AB98009368BA /* NBCSports_01042019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = NBCSports_01042019.pcap_client_all.json; path = Replay_files/NBCSports_01042019.pcap_client_all.json; sourceTree = "<group>"; };
+		454DE44621E6AB99009368BA /* Spotify_01042019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Spotify_01042019.pcap_client_all.json; path = Replay_files/Spotify_01042019.pcap_client_all.json; sourceTree = "<group>"; };
+		454DE44721E6AB99009368BA /* NBCSportsRandom_01042019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = NBCSportsRandom_01042019.pcap_client_all.json; path = Replay_files/NBCSportsRandom_01042019.pcap_client_all.json; sourceTree = "<group>"; };
+		67D730B79E9E8B9F9FDE8859 /* Pods-weheTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weheTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-weheTests/Pods-weheTests.release.xcconfig"; sourceTree = "<group>"; };
+		862349862039E7270033EAC3 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		86C489BF2040CABA00696F83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		86C489C12040CAC800696F83 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		86C489C32040CB2500696F83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86C489C52040CB2F00696F83 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86C489C82040CF7800696F83 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		86C489C92040CF7900696F83 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		960202C421C2D5E0001ADBFC /* VimeoRandom_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = VimeoRandom_12122018.pcap_client_all.json; path = Replay_files/VimeoRandom_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		960202C521C2D5E0001ADBFC /* Vimeo_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Vimeo_12122018.pcap_client_all.json; path = Replay_files/Vimeo_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		960202C621C2D5E1001ADBFC /* YoutubeRandom_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = YoutubeRandom_12122018.pcap_client_all.json; path = Replay_files/YoutubeRandom_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		960202C721C2D5E1001ADBFC /* Netflix_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Netflix_12122018.pcap_client_all.json; path = Replay_files/Netflix_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		960202C821C2D5E1001ADBFC /* NetflixRandom_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = NetflixRandom_12122018.pcap_client_all.json; path = Replay_files/NetflixRandom_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		960202C921C2D5E1001ADBFC /* Skype_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Skype_12122018.pcap_client_all.json; path = Replay_files/Skype_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		960202CA21C2D5E1001ADBFC /* Youtube_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Youtube_12122018.pcap_client_all.json; path = Replay_files/Youtube_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		960202CE21C2D5E1001ADBFC /* SkypeRandom_12122018.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SkypeRandom_12122018.pcap_client_all.json; path = Replay_files/SkypeRandom_12122018.pcap_client_all.json; sourceTree = "<group>"; };
+		96024AE71FBE096C00DE860D /* String+removingWhitespaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+removingWhitespaces.swift"; sourceTree = "<group>"; };
+		960847361F62F523006CD661 /* wehe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wehe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		960847391F62F523006CD661 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9608473B1F62F523006CD661 /* ConsentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentViewController.swift; sourceTree = "<group>"; };
+		960847401F62F523006CD661 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		960847451F62F523006CD661 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9608474A1F62F523006CD661 /* weheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9608474E1F62F523006CD661 /* weheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weheTests.swift; sourceTree = "<group>"; };
+		960847501F62F523006CD661 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96147669218CD49D002A9299 /* FunctionalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityViewController.swift; sourceTree = "<group>"; };
+		96192E442273702000BE6A19 /* HuluRandom_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HuluRandom_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		96192E452273702100BE6A19 /* Hulu_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		96192E462273702100BE6A19 /* Twitch_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Twitch_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		96192E472273702100BE6A19 /* TwitchRandom_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TwitchRandom_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		96192E492273702100BE6A19 /* FacebookVideo_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FacebookVideo_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		96192E4B2273702100BE6A19 /* FacebookVideoRandom_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FacebookVideoRandom_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		961ED3A1224546E700099FBF /* ca.pfx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ca.pfx; sourceTree = "<group>"; };
+		961ED3A3224546EF00099FBF /* ca.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = ca.der; sourceTree = "<group>"; };
+		9624D0561F66FF1000B13A30 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9624D05C1F68427D00B13A30 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		9624D05F1F684D2B00B13A30 /* app_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app_list.json; sourceTree = "<group>"; };
+		9624D0611F68778400B13A30 /* ReplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayViewController.swift; sourceTree = "<group>"; };
+		9624D0671F69908A00B13A30 /* ReplayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayTableViewCell.swift; sourceTree = "<group>"; };
+		9624D0701F69CC2F00B13A30 /* Sidechannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sidechannel.swift; sourceTree = "<group>"; };
+		962C58EF1FA7AEEF004218D4 /* ResultWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWatcher.swift; sourceTree = "<group>"; };
+		96423BC72154128200A888A4 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		9649F17B1FA8DF4C00A5A160 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		964E943C1F631E4500EA78F8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9657C6B2218105C700D44024 /* MoreInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoTableViewController.swift; sourceTree = "<group>"; };
+		9657C6B42181074800D44024 /* DPIInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPIInfoTableViewCell.swift; sourceTree = "<group>"; };
+		9657C6B6218108BC00D44024 /* BitrateInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitrateInfoTableViewCell.swift; sourceTree = "<group>"; };
+		965BFA741F87F3E30049C53F /* ReplayRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplayRunner.swift; sourceTree = "<group>"; };
+		965BFA761F8D56BF0049C53F /* Replay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replay.swift; sourceTree = "<group>"; };
+		965BFA781F8D5B2E0049C53F /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
+		9678670B1F8EB32800BE6C3B /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		967867111F8FCC3800BE6C3B /* Replayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replayer.swift; sourceTree = "<group>"; };
+		96821FE11FD7106D0067F196 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		9683E05B218A36C5003778F0 /* AboutWeheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWeheViewController.swift; sourceTree = "<group>"; };
+		9688013D2188B16400C5152D /* DPIAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPIAnalysisViewController.swift; sourceTree = "<group>"; };
+		968801402188B42A00C5152D /* ReplayViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplayViewProtocol.swift; sourceTree = "<group>"; };
+		968CA3802272390C004D2D9B /* MetaDataChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataChannel.swift; sourceTree = "<group>"; };
+		969AAE65227CBB310047BD03 /* WhatsApp_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WhatsApp_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		969AAE66227CBB310047BD03 /* WhatsAppRandom_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WhatsAppRandom_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		969AAE67227CBB310047BD03 /* AppleMusic_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppleMusic_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		969AAE68227CBB310047BD03 /* AppleMusicRandom_04112019.pcap_client_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppleMusicRandom_04112019.pcap_client_all.json; sourceTree = "<group>"; };
+		96B5333C214FF78300A24ACC /* AppCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionViewController.swift; sourceTree = "<group>"; };
+		96B5333F214FF97300A24ACC /* AppCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectionViewCell.swift; sourceTree = "<group>"; };
+		96CA60711FABA8AD0067DFF7 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
+		96CA60731FABB50C0067DFF7 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		96FEC05C1F97BF7C009016CA /* PortMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortMapping.swift; sourceTree = "<group>"; };
+		DDCC244AB724378C59001DAF /* Pods-weheTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weheTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-weheTests/Pods-weheTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F3C4E47677E2FE7BB870A8F4 /* Pods-wehe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wehe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wehe/Pods-wehe.debug.xcconfig"; sourceTree = "<group>"; };
+		FE5A92D42DC1AC4896A47879 /* Pods_wehe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wehe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		960847331F62F523006CD661 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0877AB7A354BDADA0F4C95 /* Pods_wehe.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		960847471F62F523006CD661 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3090052B2E022D0AC0CCCF /* Pods_weheTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7CA0ABB29D754D06C9FF722C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3C4E47677E2FE7BB870A8F4 /* Pods-wehe.debug.xcconfig */,
+				017C5DBA3F9E50FF2CE4B21B /* Pods-wehe.release.xcconfig */,
+				DDCC244AB724378C59001DAF /* Pods-weheTests.debug.xcconfig */,
+				67D730B79E9E8B9F9FDE8859 /* Pods-weheTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		96024AE61FBE093400DE860D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				96024AE71FBE096C00DE860D /* String+removingWhitespaces.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9608472D1F62F523006CD661 = {
+			isa = PBXGroup;
+			children = (
+				960847381F62F523006CD661 /* wehe */,
+				9608474D1F62F523006CD661 /* weheTests */,
+				960847371F62F523006CD661 /* Products */,
+				7CA0ABB29D754D06C9FF722C /* Pods */,
+				F1F7E2A2BF1A05C27FADB011 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		960847371F62F523006CD661 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				960847361F62F523006CD661 /* wehe.app */,
+				9608474A1F62F523006CD661 /* weheTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		960847381F62F523006CD661 /* wehe */ = {
+			isa = PBXGroup;
+			children = (
+				86C489C92040CF7900696F83 /* LaunchScreen.storyboard */,
+				86C489C82040CF7800696F83 /* Main.storyboard */,
+				86C489C22040CB2500696F83 /* InfoPlist.strings */,
+				86C489BE2040CABA00696F83 /* Localizable.strings */,
+				9688013F2188B41400C5152D /* protocols */,
+				96024AE61FBE093400DE860D /* Extensions */,
+				9678670A1F8EB31300BE6C3B /* Utility */,
+				9624D06F1F69CC0F00B13A30 /* Networking */,
+				9624D0661F69893600B13A30 /* Stores */,
+				9624D0651F69891B00B13A30 /* Cells */,
+				9624D0641F687C7600B13A30 /* ViewControllers */,
+				960847391F62F523006CD661 /* AppDelegate.swift */,
+				9624D05E1F684D0800B13A30 /* json.bundle */,
+				960847401F62F523006CD661 /* Assets.xcassets */,
+				960847451F62F523006CD661 /* Info.plist */,
+				961ED3A1224546E700099FBF /* ca.pfx */,
+				961ED3A3224546EF00099FBF /* ca.der */,
+			);
+			path = wehe;
+			sourceTree = "<group>";
+		};
+		9608474D1F62F523006CD661 /* weheTests */ = {
+			isa = PBXGroup;
+			children = (
+				9608474E1F62F523006CD661 /* weheTests.swift */,
+				960847501F62F523006CD661 /* Info.plist */,
+			);
+			path = weheTests;
+			sourceTree = "<group>";
+		};
+		9624D05E1F684D0800B13A30 /* json.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				454DE44421E6AB98009368BA /* Amazon_01042019.pcap_client_all.json */,
+				454DE44321E6AB98009368BA /* AmazonRandom_01042019.pcap_client_all.json */,
+				454DE44521E6AB98009368BA /* NBCSports_01042019.pcap_client_all.json */,
+				454DE44721E6AB99009368BA /* NBCSportsRandom_01042019.pcap_client_all.json */,
+				454DE44621E6AB99009368BA /* Spotify_01042019.pcap_client_all.json */,
+				454DE44221E6AB98009368BA /* SpotifyRandom_01042019.pcap_client_all.json */,
+				960202C721C2D5E1001ADBFC /* Netflix_12122018.pcap_client_all.json */,
+				969AAE67227CBB310047BD03 /* AppleMusic_04112019.pcap_client_all.json */,
+				969AAE68227CBB310047BD03 /* AppleMusicRandom_04112019.pcap_client_all.json */,
+				969AAE65227CBB310047BD03 /* WhatsApp_04112019.pcap_client_all.json */,
+				969AAE66227CBB310047BD03 /* WhatsAppRandom_04112019.pcap_client_all.json */,
+				960202C821C2D5E1001ADBFC /* NetflixRandom_12122018.pcap_client_all.json */,
+				960202C921C2D5E1001ADBFC /* Skype_12122018.pcap_client_all.json */,
+				96192E492273702100BE6A19 /* FacebookVideo_04112019.pcap_client_all.json */,
+				96192E4B2273702100BE6A19 /* FacebookVideoRandom_04112019.pcap_client_all.json */,
+				96192E452273702100BE6A19 /* Hulu_04112019.pcap_client_all.json */,
+				96192E442273702000BE6A19 /* HuluRandom_04112019.pcap_client_all.json */,
+				96192E462273702100BE6A19 /* Twitch_04112019.pcap_client_all.json */,
+				96192E472273702100BE6A19 /* TwitchRandom_04112019.pcap_client_all.json */,
+				960202CE21C2D5E1001ADBFC /* SkypeRandom_12122018.pcap_client_all.json */,
+				960202C521C2D5E0001ADBFC /* Vimeo_12122018.pcap_client_all.json */,
+				960202C421C2D5E0001ADBFC /* VimeoRandom_12122018.pcap_client_all.json */,
+				960202CA21C2D5E1001ADBFC /* Youtube_12122018.pcap_client_all.json */,
+				960202C621C2D5E1001ADBFC /* YoutubeRandom_12122018.pcap_client_all.json */,
+				9624D05F1F684D2B00B13A30 /* app_list.json */,
+			);
+			name = json.bundle;
+			sourceTree = "<group>";
+		};
+		9624D0641F687C7600B13A30 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9683E05B218A36C5003778F0 /* AboutWeheViewController.swift */,
+				96B5333C214FF78300A24ACC /* AppCollectionViewController.swift */,
+				96423BC72154128200A888A4 /* MainMenuViewController.swift */,
+				9608473B1F62F523006CD661 /* ConsentViewController.swift */,
+				9624D0611F68778400B13A30 /* ReplayViewController.swift */,
+				9688013D2188B16400C5152D /* DPIAnalysisViewController.swift */,
+				96CA60711FABA8AD0067DFF7 /* ResultTableViewController.swift */,
+				964E943C1F631E4500EA78F8 /* SettingsViewController.swift */,
+				96821FE11FD7106D0067F196 /* WebViewController.swift */,
+				9657C6B2218105C700D44024 /* MoreInfoTableViewController.swift */,
+				96147669218CD49D002A9299 /* FunctionalityViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9624D0651F69891B00B13A30 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				96B5333F214FF97300A24ACC /* AppCollectionViewCell.swift */,
+				9624D0671F69908A00B13A30 /* ReplayTableViewCell.swift */,
+				96CA60731FABB50C0067DFF7 /* ResultTableViewCell.swift */,
+				9657C6B42181074800D44024 /* DPIInfoTableViewCell.swift */,
+				9657C6B6218108BC00D44024 /* BitrateInfoTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9624D0661F69893600B13A30 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				9624D0561F66FF1000B13A30 /* Settings.swift */,
+				9624D05C1F68427D00B13A30 /* App.swift */,
+				965BFA761F8D56BF0049C53F /* Replay.swift */,
+				965BFA781F8D5B2E0049C53F /* Packet.swift */,
+				96FEC05C1F97BF7C009016CA /* PortMapping.swift */,
+				9649F17B1FA8DF4C00A5A160 /* Result.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		9624D06F1F69CC0F00B13A30 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9624D0701F69CC2F00B13A30 /* Sidechannel.swift */,
+				968CA3802272390C004D2D9B /* MetaDataChannel.swift */,
+				965BFA741F87F3E30049C53F /* ReplayRunner.swift */,
+				967867111F8FCC3800BE6C3B /* Replayer.swift */,
+				962C58EF1FA7AEEF004218D4 /* ResultWatcher.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9678670A1F8EB31300BE6C3B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9678670B1F8EB32800BE6C3B /* Helper.swift */,
+				862349862039E7270033EAC3 /* LocalizedStrings.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		9688013F2188B41400C5152D /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				968801402188B42A00C5152D /* ReplayViewProtocol.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		F1F7E2A2BF1A05C27FADB011 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE5A92D42DC1AC4896A47879 /* Pods_wehe.framework */,
+				38EFF14C6F7B49C0EFD13E29 /* Pods_weheTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		960847351F62F523006CD661 /* wehe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 960847531F62F523006CD661 /* Build configuration list for PBXNativeTarget "wehe" */;
+			buildPhases = (
+				02D01CA9A2856FAD42020662 /* [CP] Check Pods Manifest.lock */,
+				960847321F62F523006CD661 /* Sources */,
+				960847331F62F523006CD661 /* Frameworks */,
+				960847341F62F523006CD661 /* Resources */,
+				7705A5EEDB5499A776E8AE2C /* [CP] Embed Pods Frameworks */,
+				869C05B92065AC4B00306017 /* ShellScript */,
+				E11CD942128F09C2E28E08C8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wehe;
+			productName = wehe;
+			productReference = 960847361F62F523006CD661 /* wehe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		960847491F62F523006CD661 /* weheTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 960847561F62F523006CD661 /* Build configuration list for PBXNativeTarget "weheTests" */;
+			buildPhases = (
+				E6CDA7C5C00F3EB9C8AEDA56 /* [CP] Check Pods Manifest.lock */,
+				960847461F62F523006CD661 /* Sources */,
+				960847471F62F523006CD661 /* Frameworks */,
+				960847481F62F523006CD661 /* Resources */,
+				8F0C5234766ABB836FC18FB0 /* [CP] Embed Pods Frameworks */,
+				F5D7FBC29B34B0D772D18117 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9608474C1F62F523006CD661 /* PBXTargetDependency */,
+			);
+			name = weheTests;
+			productName = weheTests;
+			productReference = 9608474A1F62F523006CD661 /* weheTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9608472E1F62F523006CD661 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Northeastern University";
+				TargetAttributes = {
+					960847351F62F523006CD661 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = B36GBTR2CL;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+					};
+					960847491F62F523006CD661 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = B36GBTR2CL;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 960847351F62F523006CD661;
+					};
+				};
+			};
+			buildConfigurationList = 960847311F62F523006CD661 /* Build configuration list for PBXProject "wehe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Base,
+				en,
+				fr,
+			);
+			mainGroup = 9608472D1F62F523006CD661;
+			productRefGroup = 960847371F62F523006CD661 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				960847351F62F523006CD661 /* wehe */,
+				960847491F62F523006CD661 /* weheTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		960847341F62F523006CD661 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9624D0601F684D2B00B13A30 /* app_list.json in Resources */,
+				961ED3A4224546EF00099FBF /* ca.der in Resources */,
+				454DE44921E6AB99009368BA /* AmazonRandom_01042019.pcap_client_all.json in Resources */,
+				969AAE6C227CBB310047BD03 /* AppleMusicRandom_04112019.pcap_client_all.json in Resources */,
+				96192E552273702100BE6A19 /* FacebookVideoRandom_04112019.pcap_client_all.json in Resources */,
+				96192E4E2273702100BE6A19 /* HuluRandom_04112019.pcap_client_all.json in Resources */,
+				960202D321C2D5E1001ADBFC /* VimeoRandom_12122018.pcap_client_all.json in Resources */,
+				960847411F62F523006CD661 /* Assets.xcassets in Resources */,
+				454DE44D21E6AB99009368BA /* NBCSportsRandom_01042019.pcap_client_all.json in Resources */,
+				960202D521C2D5E1001ADBFC /* YoutubeRandom_12122018.pcap_client_all.json in Resources */,
+				969AAE69227CBB310047BD03 /* WhatsApp_04112019.pcap_client_all.json in Resources */,
+				454DE44A21E6AB99009368BA /* Amazon_01042019.pcap_client_all.json in Resources */,
+				960202D821C2D5E1001ADBFC /* Skype_12122018.pcap_client_all.json in Resources */,
+				86C489C42040CB2500696F83 /* InfoPlist.strings in Resources */,
+				454DE44C21E6AB99009368BA /* Spotify_01042019.pcap_client_all.json in Resources */,
+				960202D921C2D5E1001ADBFC /* Youtube_12122018.pcap_client_all.json in Resources */,
+				96192E532273702100BE6A19 /* FacebookVideo_04112019.pcap_client_all.json in Resources */,
+				454DE44821E6AB99009368BA /* SpotifyRandom_01042019.pcap_client_all.json in Resources */,
+				96192E512273702100BE6A19 /* TwitchRandom_04112019.pcap_client_all.json in Resources */,
+				960202D421C2D5E1001ADBFC /* Vimeo_12122018.pcap_client_all.json in Resources */,
+				960202D721C2D5E1001ADBFC /* NetflixRandom_12122018.pcap_client_all.json in Resources */,
+				960202DD21C2D5E1001ADBFC /* SkypeRandom_12122018.pcap_client_all.json in Resources */,
+				960202D621C2D5E1001ADBFC /* Netflix_12122018.pcap_client_all.json in Resources */,
+				96192E502273702100BE6A19 /* Twitch_04112019.pcap_client_all.json in Resources */,
+				86C489CB2040CF7900696F83 /* LaunchScreen.storyboard in Resources */,
+				961ED3A2224546E700099FBF /* ca.pfx in Resources */,
+				86C489C02040CABA00696F83 /* Localizable.strings in Resources */,
+				969AAE6A227CBB310047BD03 /* WhatsAppRandom_04112019.pcap_client_all.json in Resources */,
+				969AAE6B227CBB310047BD03 /* AppleMusic_04112019.pcap_client_all.json in Resources */,
+				86C489CA2040CF7900696F83 /* Main.storyboard in Resources */,
+				454DE44B21E6AB99009368BA /* NBCSports_01042019.pcap_client_all.json in Resources */,
+				96192E4F2273702100BE6A19 /* Hulu_04112019.pcap_client_all.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		960847481F62F523006CD661 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02D01CA9A2856FAD42020662 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-wehe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7705A5EEDB5499A776E8AE2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-wehe/Pods-wehe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BlueSSLService/SSLService.framework",
+				"${BUILT_PRODUCTS_DIR}/BlueSocket/Socket.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/LinearProgressBar/LinearProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NSData+FastHex/NSData_FastHex.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSLService.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Socket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinearProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSData_FastHex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wehe/Pods-wehe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		869C05B92065AC4B00306017 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+		8F0C5234766ABB836FC18FB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-weheTests/Pods-weheTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E11CD942128F09C2E28E08C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wehe/Pods-wehe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6CDA7C5C00F3EB9C8AEDA56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-weheTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5D7FBC29B34B0D772D18117 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-weheTests/Pods-weheTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		960847321F62F523006CD661 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CA60741FABB50C0067DFF7 /* ResultTableViewCell.swift in Sources */,
+				965BFA751F87F3E30049C53F /* ReplayRunner.swift in Sources */,
+				9624D0621F68778400B13A30 /* ReplayViewController.swift in Sources */,
+				96024AE81FBE096C00DE860D /* String+removingWhitespaces.swift in Sources */,
+				9608473C1F62F523006CD661 /* ConsentViewController.swift in Sources */,
+				9608473A1F62F523006CD661 /* AppDelegate.swift in Sources */,
+				9614766A218CD49D002A9299 /* FunctionalityViewController.swift in Sources */,
+				9688013E2188B16400C5152D /* DPIAnalysisViewController.swift in Sources */,
+				96B53340214FF97300A24ACC /* AppCollectionViewCell.swift in Sources */,
+				9657C6B52181074800D44024 /* DPIInfoTableViewCell.swift in Sources */,
+				968CA3812272390C004D2D9B /* MetaDataChannel.swift in Sources */,
+				9649F17C1FA8DF4C00A5A160 /* Result.swift in Sources */,
+				964E943D1F631E4500EA78F8 /* SettingsViewController.swift in Sources */,
+				862349872039E7270033EAC3 /* LocalizedStrings.swift in Sources */,
+				9624D0711F69CC2F00B13A30 /* Sidechannel.swift in Sources */,
+				96B5333D214FF78300A24ACC /* AppCollectionViewController.swift in Sources */,
+				96FEC05D1F97BF7D009016CA /* PortMapping.swift in Sources */,
+				9683E05C218A36C5003778F0 /* AboutWeheViewController.swift in Sources */,
+				9678670C1F8EB32800BE6C3B /* Helper.swift in Sources */,
+				96CA60721FABA8AD0067DFF7 /* ResultTableViewController.swift in Sources */,
+				9657C6B3218105C700D44024 /* MoreInfoTableViewController.swift in Sources */,
+				968801412188B42A00C5152D /* ReplayViewProtocol.swift in Sources */,
+				96423BC82154128200A888A4 /* MainMenuViewController.swift in Sources */,
+				96821FE21FD7106D0067F196 /* WebViewController.swift in Sources */,
+				967867121F8FCC3800BE6C3B /* Replayer.swift in Sources */,
+				9624D05D1F68427D00B13A30 /* App.swift in Sources */,
+				9657C6B7218108BC00D44024 /* BitrateInfoTableViewCell.swift in Sources */,
+				9624D0571F66FF1000B13A30 /* Settings.swift in Sources */,
+				962C58F01FA7AEEF004218D4 /* ResultWatcher.swift in Sources */,
+				9624D0681F69908A00B13A30 /* ReplayTableViewCell.swift in Sources */,
+				965BFA791F8D5B2F0049C53F /* Packet.swift in Sources */,
+				965BFA771F8D56BF0049C53F /* Replay.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		960847461F62F523006CD661 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9608474F1F62F523006CD661 /* weheTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9608474C1F62F523006CD661 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 960847351F62F523006CD661 /* wehe */;
+			targetProxy = 9608474B1F62F523006CD661 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		86C489BE2040CABA00696F83 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86C489BF2040CABA00696F83 /* en */,
+				86C489C12040CAC800696F83 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		86C489C22040CB2500696F83 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86C489C32040CB2500696F83 /* en */,
+				86C489C52040CB2F00696F83 /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		960847511F62F523006CD661 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Choffnes (357CVTBWAB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Choffnes (357CVTBWAB)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		960847521F62F523006CD661 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		960847541F62F523006CD661 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3C4E47677E2FE7BB870A8F4 /* Pods-wehe.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B36GBTR2CL;
+				INFOPLIST_FILE = wehe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.meddle.wehe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		960847551F62F523006CD661 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 017C5DBA3F9E50FF2CE4B21B /* Pods-wehe.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B36GBTR2CL;
+				INFOPLIST_FILE = wehe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.meddle.wehe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		960847571F62F523006CD661 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDCC244AB724378C59001DAF /* Pods-weheTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B36GBTR2CL;
+				INFOPLIST_FILE = weheTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.meddle.weheTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wehe.app/wehe";
+			};
+			name = Debug;
+		};
+		960847581F62F523006CD661 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67D730B79E9E8B9F9FDE8859 /* Pods-weheTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B36GBTR2CL;
+				INFOPLIST_FILE = weheTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.meddle.weheTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wehe.app/wehe";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		960847311F62F523006CD661 /* Build configuration list for PBXProject "wehe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				960847511F62F523006CD661 /* Debug */,
+				960847521F62F523006CD661 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		960847531F62F523006CD661 /* Build configuration list for PBXNativeTarget "wehe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				960847541F62F523006CD661 /* Debug */,
+				960847551F62F523006CD661 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		960847561F62F523006CD661 /* Build configuration list for PBXNativeTarget "weheTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				960847571F62F523006CD661 /* Debug */,
+				960847581F62F523006CD661 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9608472E1F62F523006CD661 /* Project object */;
+}

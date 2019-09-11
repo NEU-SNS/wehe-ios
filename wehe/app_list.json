@@ -1,0 +1,105 @@
+{
+    "apps": [
+             {
+             "name" : "Youtube",
+             "size" : "16",
+             "time" : 8,
+             "icon" : "youtube",
+             "replayFile" : "Youtube_12122018.pcap_client_all",
+             "randomReplayFile" : "YoutubeRandom_12122018.pcap_client_all"
+             },
+             {
+             "name" : "Amazon",
+             "size" : "13",
+             "time" : 28,
+             "icon" : "amazon",
+             "replayFile" : "Amazon_01042019.pcap_client_all",
+             "randomReplayFile" : "AmazonRandom_01042019.pcap_client_all"
+             },
+             {
+             "name":"NBCSports",
+             "size": "19",
+             "time": 24,
+             "icon":"nbcsports",
+             "replayFile":"NBCSports_01042019.pcap_client_all",
+             "randomReplayFile":"NBCSportsRandom_01042019.pcap_client_all"
+             },
+             {
+             "name":"Netflix",
+             "size": "15",
+             "time": 30,
+             "icon":"netflix",
+             "replayFile":"Netflix_12122018.pcap_client_all",
+             "randomReplayFile":"NetflixRandom_12122018.pcap_client_all"
+             },
+             {
+             "name":"Skype",
+             "size": "14",
+             "time": 40,
+             "icon":"skype",
+             "replayFile":"Skype_12122018.pcap_client_all",
+             "randomReplayFile":"SkypeRandom_12122018.pcap_client_all"
+             },
+             {
+             "name":"Spotify",
+             "size": "8",
+             "time": 15,
+             "icon":"spotify",
+             "replayFile":"Spotify_01042019.pcap_client_all",
+             "randomReplayFile":"SpotifyRandom_01042019.pcap_client_all"
+             },
+             {
+             "name":"Vimeo",
+             "size": "18",
+             "time": 15,
+             "icon":"vimeo",
+             "replayFile":"Vimeo_12122018.pcap_client_all",
+             "randomReplayFile":"VimeoRandom_12122018.pcap_client_all"
+             },
+             {
+                 "name":"AppleMusic",
+                 "size": "6",
+                 "time": 2,
+                 "icon":"applemusic",
+                 "replayFile":"AppleMusic_04112019.pcap_client_all",
+                 "randomReplayFile":"AppleMusic_04112019.pcap_client_all",
+                 "hidden": true
+             },
+             {
+                 "name":"Facebook",
+                 "size": "14",
+                 "time": 23,
+                 "icon":"facebook",
+                 "replayFile":"FacebookVideo_04112019.pcap_client_all",
+                 "randomReplayFile":"FacebookVideoRandom_04112019.pcap_client_all",
+                 "hidden": true
+             },
+             {
+                 "name":"Hulu",
+                 "size": "14",
+                 "time": 16,
+                 "icon":"hulu",
+                 "replayFile":"Hulu_04112019.pcap_client_all",
+                 "randomReplayFile":"HuluRandom_04112019.pcap_client_all",
+                 "hidden": true
+             },
+             {
+                 "name":"Twitch",
+                 "size": "13",
+                 "time": 14,
+                 "icon":"twitch",
+                 "replayFile":"Twitch_04112019.pcap_client_all",
+                 "randomReplayFile":"TwitchRandom_04112019.pcap_client_all",
+                 "hidden": true
+             },
+             {
+                 "name":"WhatsApp",
+                 "size": "7",
+                 "time": 29,
+                 "icon":"whatsapp",
+                 "replayFile":"WhatsApp_04112019.pcap_client_all",
+                 "randomReplayFile":"WhatsApp_04112019.pcap_client_all",
+                 "hidden": true
+             },
+             ]
+}

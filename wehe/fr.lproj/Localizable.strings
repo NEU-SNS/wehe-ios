@@ -1,0 +1,354 @@
+/* No comment provided by engineer. */
+"Accept" = "Accepter";
+
+/* No comment provided by engineer. */
+"An error occured while trying to load the web view. This could happen if the website is down or there is an issue with your connection" = "Une erreur s'est produite lors du chargement de la vue Web. Cela peut arriver si le site web est en panne ou s'il y a un problème avec votre connexion";
+
+/* No comment provided by engineer. */
+"App Throughput" = "Débit en clair";
+
+/* No comment provided by engineer. */
+"Area Test Threshold Percentage" = "Seuil de la différence d'aire, en % (plus le seuil est faible, plus Wehe sera sensible aux variations de débits)";
+
+/* No comment provided by engineer. */
+"Asking server for port mapping" = "En attente du port réseau du serveur";
+
+/* No comment provided by engineer. */
+"Back" = "Retour";
+
+/* No comment provided by engineer. */
+"Back to Menu" = "Retour au menu";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuler";
+
+/* No comment provided by engineer. */
+"Consent Form" = "Formulaire de consentement";
+
+/* No comment provided by engineer. */
+"Consent Text" = "En utilisant cette application, vous contribuez à un projet de recherche. Cette participation est volontaire et peut être arrêtée à tout moment. Elle n’octroie pas de de bénéfice financier. Il est nécessaire d’avoir au moins 18 ans pour pouvoir prendre part au projet.\n\nLes informations qui sont recueillies pendant les tests sont anonymisées, puis agrégées afin d’adopter une approche statistique du traitement du trafic. Les données sont conservées pendant la durée nécessaire à l’édification des résultats du projet de recherche. Lorsque vous utilisez l'application, Wehe analyse le trafic que vous générez pour déterminer si votre fournisseur d'accès à Internet interfère en bridant ou priorisant certains flux. Si elles sont disponibles, des informations relatives au  réseau, à la puissance du signal, au système d'exploitation, à l’horodatage des tests ainsi qu’à votre géolocalisation si vous avez accepté de la partager  (la précision des données de localisation stockées sont supérieure à un rayon de 1 km autour de votre localisation exacte) seront collectées. Ces données sont à disposition des chercheurs de la Northeastern University et des agents de l’Unité Internet Ouvert de l’Arcep (Autorité de Régulation des Communications électroniques et des Postes) afin de mieux comprendre les pratiques des fournisseurs d'accès à Internet sur les différents contenus de votre smartphone et d’alerter sur d’éventuels manquements au Règlement (UE) 2015/2120 relatif à l’Internet Ouvert. Ces données retraitées ont également vocation à être publiées en open data afin que tout tiers puisse reproduire les conclusions présentées. Cette étude de recherche a été examinée et approuvée par le Conseil d'examen institutionnel de la Northeasterm University le 14 août 2016.\n\nPour toute question concernant la nature et le traitement des données collectées, n'hésitez pas à contacter Mark Nardone, Directeur de la sécurité de l'information de la Northeastern University par e-mail à : privacy@neu.edu.\n\nEn acceptant ce formulaire, j’accepte que la NU recueille et traite les données nécessaires à l’analyse du trafic testé.";
+
+/* No comment provided by engineer. */
+"Contacting server" = "En attente du serveur";
+
+/* No comment provided by engineer. */
+"Current Test" = "Replay en cours";
+
+/* No comment provided by engineer. */
+"Decline" = "Refuser";
+
+/* No comment provided by engineer. */
+"Differentiation" = "Différenciation détectée";
+
+/* No comment provided by engineer. */
+"Done running tests" = "Tests terminés";
+
+/* No comment provided by engineer. */
+"Error" = "Erreur";
+
+/* No comment provided by engineer. */
+"Error reading replay files" = "Erreur lors de la lecture du replay";
+
+/* No comment provided by engineer. */
+"Error recieving packets from server" = "Erreur lors de la réception des paquets du serveur";
+
+/* No comment provided by engineer. */
+"Finished running tests" = "Tests terminés";
+
+/* No comment provided by engineer. */
+"If you are trying to run tests for %@, disconnect from the Wi-Fi and restart the app" = "Si vous essayez d'exécuter des tests pour %@, déconnectez-vous du Wi-Fi et redémarrez l'application";
+
+/* No comment provided by engineer. */
+"KS2 P Value Test Threshold Percentage" = "Seuil du test KS2 p-value, en % (plus le seuil est élevé, plus Wehe sera sensible aux variations de débits)";
+
+/* No comment provided by engineer. */
+"Loading test files" = "Chargement des données de test";
+
+/* No comment provided by engineer. */
+"Looks like your connection is using ipv6 which may not be supported" = "Il semble que votre connexion utilise IPv6, ce qui peut ne pas marcher";
+
+/* No comment provided by engineer. */
+"Menu" = "Menu";
+
+/* No comment provided by engineer. */
+"Name" = "Nom";
+
+/* No comment provided by engineer. */
+"No" = "Non";
+
+"No Rate" = "Non merci";
+
+/* No comment provided by engineer. */
+"No differentiation" = "Pas de différenciation";
+
+/* No comment provided by engineer. */
+"Non-App Throughput" = "Débit chiffré";
+
+/* No comment provided by engineer. */
+"None" = "Aucun";
+
+/* No comment provided by engineer. */
+"Previous Results" = "Mes résultats";
+
+/* No comment provided by engineer. */
+"Queued" = "Mis en attente";
+
+/* No comment provided by engineer. */
+"Re-run" = "Relancer";
+
+/* No comment provided by engineer. */
+"Received results" = "Résultats reçus";
+
+/* No comment provided by engineer. */
+"Receiver error" = "Erreur lors de la réception des résultats";
+
+/* No comment provided by engineer. */
+"Replay failed due to unknown error" = "Le test a échoué suite à une erreur inconnue";
+
+/* No comment provided by engineer. */
+"Requesting results from the server" = "En attente des résultats du serveur";
+
+/* No comment provided by engineer. */
+"Rerun All Tests" = "Relancer tous les tests";
+
+/* No comment provided by engineer. */
+"Rerun Inconclusive Tests" = "Relancer tous les tests non concluants";
+
+/* No comment provided by engineer. */
+"Rerun Tests with Errors" = "Relancer tous les tests avec erreurs";
+
+/* No comment provided by engineer. */
+"Rerun Tests?" = "Relancer les tests ?";
+
+/* No comment provided by engineer. */
+"Result" = "Résultats";
+
+/* No comment provided by engineer. */
+"Results" = "Résultats";
+
+/* No comment provided by engineer. */
+"Results inconclusive" = "Resultats non concluants";
+
+/* No comment provided by engineer. */
+"Results inconclusive, please try running the test again" = "Les résultats ne sont pas concluants. Veuillez relancer le test.";
+
+/* No comment provided by engineer. */
+"Results inconclusive, re-running test" = "Resultats non concluants, le test a été relancé";
+
+/* No comment provided by engineer. */
+"Run Tests" = "Lancer les tests";
+
+/* No comment provided by engineer. */
+"Run multiple tests to confirm differentiation" = "Lancer des tests additionnels pour confirmer les résultats";
+
+/* No comment provided by engineer. */
+"Running test(s)" = "Tests en cours";
+
+/* No comment provided by engineer. */
+"Running the original test" = "Exécution du test non chiffré";
+
+/* No comment provided by engineer. */
+"Running the randomized test" = "Exécution du test chiffré";
+
+/* No comment provided by engineer. */
+"Save" = "Enregistrer";
+
+/* No comment provided by engineer. */
+"Select Server" = "Choisir un serveur";
+
+/* No comment provided by engineer. */
+"Server granted permissions" = "Le serveur a autorisé le test";
+
+/* No comment provided by engineer. */
+"Settings" = "Réglages";
+
+/* No comment provided by engineer. */
+"Size" = "Volume";
+
+/* No comment provided by engineer. */
+"Start" = "Commencer";
+
+/* No comment provided by engineer. */
+"Status" = "Statut";
+
+/* No comment provided by engineer. */
+"Test queued" = "Test mis en file d'attente";
+
+/* No comment provided by engineer. */
+"This action will stop the active replay(s) and not wait for results. Existing results will be saved. Are you sure?" = "Cette action arrêtera les tests et n'attendra pas les résultats. Les résultats existants seront enregistrés. Êtes-vous sûr?";
+
+/* No comment provided by engineer. */
+"Time" = "Durée";
+
+/* No comment provided by engineer. */
+"Use default values for thresholds" = "Utiliser les valeurs par défaut pour les seuils";
+
+/* No comment provided by engineer. */
+"View Consent Form" = "Conditions générales d'utilisation";
+
+/* No comment provided by engineer. */
+"View Online Dashboard" = "Statistiques France";
+
+/* No comment provided by engineer. */
+"Waiting for analysis results" = "en attente des résultats de l'analyse";
+
+/* No comment provided by engineer. */
+"Waiting to start" = "En attente du démarrage";
+
+/* No comment provided by engineer. */
+"Warning" = "Attention";
+
+/* No comment provided by engineer. */
+"Would you like to rerun the tests?" = "Voulez-vous relancer les tests?";
+
+/* No comment provided by engineer. */
+"Yes" = "Oui";
+
+/* No comment provided by engineer. */
+"Differentiation detected" = "Différenciation détectée";
+
+/* No comment provided by engineer. */
+"No differentiation detected" = "Pas de différenciation détectée";
+
+/* No comment provided by engineer. */
+"results inconclusive" = "résultats non concluants";
+
+/* No comment provided by engineer. */
+"running additional test(s)" = "exécution de tests supplémentaires";
+
+/* No comment provided by engineer. */
+"your mobile carrier" = "votre opérateur";
+
+"Server" = "Serveur";
+
+"KS2 P Value Threshold" = "Seuil du test KS2 P-value";
+
+"Area Threshold" = "Seuil du test d'aire";
+
+"Use default values for settings" = "Utiliser les valeurs par défaut pour les réglages";
+
+"Enter" = "Entrée";
+
+"Custom" = "Personnaliser";
+
+"Custom Server" = "Choix du serveur";
+
+"Enter the Custom Server URL" = "Entrer l’URL du serveur";
+
+"Success" = "Succès";
+
+"Report Sent" = "Une alerte a été envoyée à l’Arcep. Merci !";
+
+/* DPI STUFF */
+
+/* No comment provided by engineer. */
+"More Info" = "Plus d'Informations";
+
+/* No comment provided by engineer. */
+"Unable to parse result" = "Format du résultat incorrect";
+
+/* (No Comment) */
+"DPI Info Result Text" = "Dernier Test:%@\nMatching mot:\"%@\"\nTests exécutés:%@";
+
+/* (No Comment) */
+"DPI Info Text" = "DPI signifie Deep Packet Inspection, c’est à dire l’inspection des paquets internet par votre FAI afin de trouver certains mots-clés. Cette analyse détermine le(s) mot(s) clé(s) que votre FAI utilise pour éventuellement limiter le débit de cette application.\n\nCela nécessitera plusieurs tests, environ 1 Go de données, et peut prendre plus d'une heure. ";
+
+/* No comment provided by engineer. */
+"No previous result found." = "Pas de résultats précédents.";
+
+/* No comment provided by engineer. */
+"Unable to contact server" = "Impossible de contacter le serveur";
+
+/* No comment provided by engineer. */
+"Reset DPI Progress" = "Recommencer l’analyse du DPI";
+
+/* No comment provided by engineer. */
+"You will lose your DPI progress and have to start over, are you sure?" = "Vous perdrez la progression de votre DPI et devrez recommencer, êtes-vous sûr de continuer?";
+
+/* No comment provided by engineer. */
+"Previous Result:\n" = "Résultat précédent:\n";
+
+/* No comment provided by engineer. */
+"360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps" = "360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps";
+
+/* No comment provided by engineer. */
+"Bitrate Info" = "Info sur le débit ";
+
+/* No comment provided by engineer. */
+"DPI Analysis Info" = "Informations sur l’analyse du DPI";
+
+/* No comment provided by engineer. */
+"beta" = "Beta";
+
+/* No comment provided by engineer. */
+"reset" = "Réinitialiser";
+
+/* No comment provided by engineer. */
+"Start DPI Analysis" = "Démarrer l'analyse du DPI";
+
+/* No comment provided by engineer. */
+"Retry" = "Réessayer";
+
+/* No comment provided by engineer. */
+"DPI Analysis" = "Analyse du DPI ";
+
+/* No comment provided by engineer. */
+"Warning" = "Attention";
+
+/* No comment provided by engineer. */
+"Packet %d - Bytes [%d, %d]" = "Paquet%1$d - Octets [%2$d,%3$d]";
+
+/* No comment provided by engineer. */
+"Start" = "Commencer";
+
+/* No comment provided by engineer. */
+"Re-run" = "Relancer";
+
+/* No comment provided by engineer. */
+"This action will stop the active test. Are you sure?" = "Cette action arrêtera le test actif. Êtes-vous sûr de continuer?";
+
+/* No comment provided by engineer. */
+"Test Finished" = "Test terminé";
+
+/* No comment provided by engineer. */
+"Finished running tests" = "Terminé les tests";
+
+/* No comment provided by engineer. */
+"Matching Keyword:\n\"%@\"" = "Mot-clé correspondant:\n\"%@\"";
+
+/* No comment provided by engineer. */
+"Requesting next test" = "En attente du test suivant";
+
+/* No comment provided by engineer. */
+"Running analysis" = "Exécution de l'analyse";
+
+/* No comment provided by engineer. */
+"Unable to contact server" = "Impossible de contacter le serveur";
+
+/* No comment provided by engineer. */
+"Error occurred" = "Une erreur est survenue ";
+
+/* No comment provided by engineer. */
+"Finished running tests" = "Terminé les tests";
+
+"Why Wehe" = "Merci !";
+
+"Alert Arcep" = "J’alerte l’Arcep !";
+
+"AboutText" = "En effectuant des tests avec Wehe, vous contribuez à l’identification de potentielles entraves à la neutralité du net. Vous participez au projet de recherche de la Northeastern University piloté par David Choffnes et épaulez l’Arcep (l’Autorité de Régulation des Télécommunications Électroniques et des Postes) dans l’une de ses missions clé. Un résultat individuel indiquant qu’une différenciation a été détectée ne suffit pas à caractériser un manquement au règlement (UE) 2015/2120 relatif à l’Internet Ouvert.  L’application Wehe n’est pas le mécanisme de surveillance agréé par l’autorité règlementaire nationale évoqué à l’article 4.4 dudit règlement.";
+
+"How it Works" = "Fonctionnement";
+
+"FunctionalityText" = "Wehe analyse le trafic généré via l’application pour déterminer si l’opérateur bride ou priorise certains services (YouTube, Netflix, Spotify etc.). Le test s’effectue en deux étapes. Wehe simule une utilisation du service afin que l’opérateur traite le trafic généré comme il traiterait le trafic réel issu de ce service. Puis Wehe rejoue le même trafic en remplaçant le contenu en clair (nom de l’application et des serveurs utilisés, etc.) par du contenu chiffré, invisible pour l’opérateur. L’application compare ensuite les débits mesurés à ces deux étapes, répète à nouveau le test pour éliminer au maximum l’impact de l’état conjoncturel du réseau, et indique si une différence de traitement a été constatée.\n\nSi tel est le cas, Wehe offre la possibilité d’effectuer des tests supplémentaires pour repérer les règles de Deep Packet Inspection (DPI) qui pourraient avoir été mises en place par l’opérateur afin de détecter les flux à brider ou prioriser. Attention, ces tests consomment un volume de données significatif et peuvent durer plusieurs minutes.\n\nMentions légales\n\nPour le fonctionnement de l’application Wehe, la Northeastern University collecte votre géolocalisation uniquement si vous avez accepté de la partager ainsi que votre adresse IP qui n’est conservée que tronquée. L’ensemble de ces informations sont anonymisées dans le but de les publier en open data afin que tout tiers puissent reproduire nos conclusions. Conformément au règlement n°2016/679, dit Règlement général pour la protection des données et à la loi n°78-17 du 6 janvier 1978 modifiée relative à l'informatique, aux fichiers et aux libertés, vous disposez d'un droit d’opposition, d'accès, de rectification, de suppression, de limitation ou de portabilité portant sur les données vous concernant. Pour toute demande, vous pouvez contacter David Choffnes <choffnes@ccs.neu.edu>.\n\nDirecteur de la publication : David Choffnes";
+
+"NEU agreement text" = " j’accepte que la NEU recueille et traite les données me concernant nécessaires à l’analyse du trafic testé.";
+
+"ARCEP agreement text" = "j’accepte que l’Arcep ait accès aux données recueillies et traitées par la NEU";
+
+"%d of %d" = "%d sur %d";
+
+"RateRequest" = "Votre avis est très important pour nous. Nous vous serions très reconnaissants de prendre une minute pour noter notre app dans l’App Store. C’est la seule fois que nous vous le demanderons, promis !";
+
+"Please rate us" = "Notez-nous !";
+
+"Take me to App Store" = "Notez dans l’App Store";
