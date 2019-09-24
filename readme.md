@@ -1,4 +1,6 @@
 # README
+This software is licensed under the Apache License (see LICENSE.txt).
+
 This file is intended to help get someone unfamilliar with the project up to speed. I've tried my best to make the code clear and easy to follow but that's not always possible.
 
 ---
