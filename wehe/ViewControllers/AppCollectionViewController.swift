@@ -19,23 +19,59 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var totalSizeNameLabel: UILabel!
     @IBOutlet weak var totalSizeLabel: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var segmentedControlApps: UISegmentedControl!
+    @IBOutlet weak var portTestSize: UILabel!
+    var portTests: Bool = false
 
     // MARK: Properties
     var apps = [App]()
+    var allApps = [App]()
 
+    var firstTimeVideo: Bool = true
+    var firstTimeMusic: Bool = true
+    var firstTimeConference: Bool = true
+    var firstTime10MBPort: Bool = true
+    var firstTime50MBPort: Bool = true
     let defaults = UserDefaults.standard
     let locationManager = CLLocationManager()
     var settings: Settings?
 
-    var sessionManager: SessionManager?
+    var session: Session!
 
-    let testsPerReplay: Float = 2
+    var testsPerReplay: Float = 2
+    var numTestsSelectedDefault: Int = 3
+    var numPortTestsSelectedDefault: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         settings = Globals.settings
+        if portTests {
+            portTestSize.isHidden = false
+            segmentedControl.isHidden = false
+            segmentedControlApps.isHidden = true
+        } else {
+            portTestSize.isHidden = true
+            segmentedControl.isHidden = true
+            segmentedControlApps.isHidden = false
+        }
+        //segmented control set up
+        segmentedControl.apportionsSegmentWidthsByContent = true
+        segmentedControlApps.apportionsSegmentWidthsByContent = true
+        let segmentAppsTexts = [LocalizedStrings.Generic.video, LocalizedStrings.Generic.music, LocalizedStrings.Generic.videoconferencing]
+        var segmentAppIndex = 0
+        for segmentAppText in segmentAppsTexts {
+            segmentedControlApps.setTitle(segmentAppText, forSegmentAt: segmentAppIndex)
+            segmentAppIndex += 1
+        }
 
+        var segmentIndex = 0
+        let segmentTexts = [LocalizedStrings.Generic.small, LocalizedStrings.Generic.large]
+        for segmentText in segmentTexts {
+            segmentedControl.setTitle(segmentText, forSegmentAt: segmentIndex)
+            segmentIndex += 1
+        }
         // main-menu set-up
         let locationAuthorization = CLLocationManager.authorizationStatus()
         let locationServiceEnabled = CLLocationManager.locationServicesEnabled()
@@ -46,8 +82,9 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
                 locationManager.requestWhenInUseAuthorization()
             }
         }
-
-        loadDefaultSettings()
+        
+//        not used for now, since the default settings have not been changed
+//        loadDefaultSettings()
 
         if hasResults() && !settings!.askedToRate {
             settings!.askedToRate = true
@@ -57,10 +94,13 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
         // -------
         beautify()
         loadAppsFile()
-        initialSize()
+        let firstTimeThisTab = filterAppsByTab()
+        randomlySelectTests(needRandomSelect: firstTimeThisTab)
+        updateSize()
         if settings!.consent {
             showWiFiWarning()
         }
+        collectionView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,9 +118,27 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
         }
     }
 
+//    only do random selection if first time switching, otherwise, keep state
+    @IBAction func appsIndexChanged(_ sender: Any) {
+        print("app index changes")
+        let firstTimeThisTab = filterAppsByTab()
+        randomlySelectTests(needRandomSelect: firstTimeThisTab)
+        updateSize()
+        updateRunButton()
+        collectionView.reloadData()
+    }
+
+    @IBAction func indexChanged(_ sender: Any) {
+        let firstTimeThisTab = filterAppsByTab()
+        randomlySelectTests(needRandomSelect: firstTimeThisTab)
+        updateSize()
+        updateRunButton()
+        collectionView.reloadData()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        roundButton()
+        // roundButton()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,7 +162,12 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
         cell.iconImageView.image = UIImage(named: app.icon)
         cell.app = app
         cell.selectionSwitch.addTarget(self, action: #selector(switchToggled), for: UIControl.Event.valueChanged)
-
+        cell.selectionSwitch.isEnabled = true
+        if app.isSelected {
+            cell.selectionSwitch.setOn(true, animated: false)
+        } else {
+            cell.selectionSwitch.setOn(false, animated: false)
+        }
         return cell
     }
 
@@ -122,21 +185,9 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
 
             destination.settings = settings
             destination.apps = selectedApps
+//            destination.portTest = portTests
         }
     }
-
-    // MARK: Segue
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-//        var appsSelected = false
-//        if let cells = self.tableView.visibleCells as? [AppTableViewCell] {
-//            for cell in cells where cell.selectSwitch.isOn {
-//                appsSelected = true
-//            }
-//
-//            return appsSelected
-//        }
-//        return appsSelected
-//    }
 
     // MARK: Actions
 
@@ -166,15 +217,83 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
         }
     }
 
+    private func randomlySelectTests(needRandomSelect: Bool) {
+        if needRandomSelect {
+            var numTestsSelect: Int
+            numTestsSelect = numTestsSelectedDefault
+            let numTests = apps.count
+            let numbers = Array(1...numTests)
+            let shuffledNumbers = numbers.shuffled()
+            let testsSelected = shuffledNumbers.prefix(numTestsSelect)
+            var testCount = 1
+            for app in apps {
+                if testsSelected.contains(testCount) {
+                    app.isSelected = true
+                } else {
+                    app.isSelected = false
+                }
+                testCount += 1
+            }
+        }
+    }
+
     private func addApps(json: JSON) {
         guard json["apps"] != JSON.null else {
             print("apps key not found in JSON")
             return
         }
-
-        apps = Helper.jsonToApps(json: json)
-        for app in apps {
-            app.isSelected = true
+        allApps = Helper.jsonToApps(json: json)
+    }
+    private func filterAppsByTab() -> Bool {
+        if portTests {
+            apps = allApps.filter({$0.isPortTest})
+            if segmentedControl.selectedSegmentIndex == 1 {
+                apps = apps.filter({$0.isLargeTest})
+                if firstTime50MBPort {
+                    firstTime50MBPort = false
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                apps = apps.filter({!$0.isLargeTest})
+                if firstTime10MBPort {
+                    firstTime10MBPort = false
+                    return true
+                } else {
+                    return false
+                }
+            }
+        } else {
+            // index 0 == video
+            apps = allApps.filter({!$0.isPortTest})
+            if segmentedControlApps.selectedSegmentIndex == 0 {
+                apps = apps.filter({$0.appType == "video"})
+                if firstTimeVideo {
+                    firstTimeVideo = false
+                    return true
+                } else {
+                    return false
+                }
+            // index 1 == music
+            } else if segmentedControlApps.selectedSegmentIndex == 1 {
+                apps = apps.filter({$0.appType == "music"})
+                if firstTimeMusic {
+                    firstTimeMusic = false
+                    return true
+                } else {
+                    return false
+                }
+            // index 2 == videoconferencing
+            } else {
+                apps = apps.filter({$0.appType == "videoconferencing"})
+                if firstTimeConference {
+                    firstTimeConference = false
+                    return true
+                } else {
+                    return false
+                }
+            }
         }
     }
 
@@ -185,6 +304,15 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
 
         let carrier = Helper.getCarrier() ?? LocalizedStrings.AppTable.defaultMobileCareer
         let subtitle = String(format: LocalizedStrings.AppTable.wifiWarning, carrier)
+
+        let banner = StatusBarNotificationBanner(title: subtitle, style: .warning)
+
+        banner.show()
+    }
+
+    private func showPortTestWarning() {
+
+        let subtitle = String(format: LocalizedStrings.AppTable.portTestsWarning)
 
         let banner = StatusBarNotificationBanner(title: subtitle, style: .warning)
 
@@ -211,7 +339,7 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
             totalSize += (Float(app.size ?? "0") ?? 0) * testsPerReplay
         }
 
-        totalSizeLabel.text = String(format: "%.1f MB", totalSize)
+        totalSizeLabel.text = String(format: "%.1f " + LocalizedStrings.Generic.MB, totalSize)
     }
 
     private func updateSize() {
@@ -221,7 +349,8 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
             totalSize += (Float(app.size ?? "0") ?? 0) * testsPerReplay
         }
 
-        totalSizeLabel.text = String(format: "%.1f MB", totalSize)
+        totalSizeLabel.text = String(format: "%.0f " + LocalizedStrings.Generic.MB, totalSize)
+        portTestSize.text = String(format: "(2 x %.0f " + LocalizedStrings.AppTable.portTestSize, Float(apps[0].size ?? "0") ?? 0)
     }
 
     private func updateRunButton() {
@@ -275,8 +404,8 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
     // MARK: CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            settings!.latitude = String(location.coordinate.latitude)
-            settings!.longitude = String(location.coordinate.longitude)
+            settings!.latitude = String(format: "%.1f", location.coordinate.latitude)
+            settings!.longitude = String(format: "%.1f", location.coordinate.longitude)
         }
     }
 
@@ -292,12 +421,13 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
 
     private func loadDefaultSettings() {
         let parameters: Parameters = ["userID": settings!.randomID, "command": "defaultSetting"]
-        let url = Helper.makeURL(ip: settings!.serverIP, port: String(settings!.resultsPort), api: "Results", https: false)
-        sessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default, delegate: SessionManager.default.delegate, serverTrustPolicyManager: Helper.serverTrustPoliceManager(server: settings!.serverIP))
-
-        sessionManager!.request(url, parameters: parameters).responseJSON { response in
-            if let result = response.result.value {
-                let json = JSON(result)
+        let url = Helper.makeURL(ip: settings!.serverIP, port: String(settings!.httpsResultsPort), api: "Results", https: true)
+        session = Session(configuration: URLSessionConfiguration.af.default, serverTrustManager: Helper.getServerTrustManager(server: settings!.serverIP))
+        session.request(url, parameters: parameters).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
                 if json != JSON.null && json["success"].bool! {
                     if let ks2Threshold = json["ks2Threshold"].string {
                         if let ks2ThresholdDouble = Double(ks2Threshold) {
@@ -317,6 +447,7 @@ class AppCollectionViewController: UIViewController, UICollectionViewDataSource,
                         }
                     }
                 }
+            case .failure(let error): print(error)
             }
         }
     }

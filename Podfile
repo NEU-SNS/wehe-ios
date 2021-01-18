@@ -8,15 +8,16 @@ target 'wehe' do
   use_frameworks!
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftyJSON'
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 5.0'
   pod 'BlueSocket'
   pod 'BlueSSLService'
   pod 'NotificationBannerSwift'
   pod 'SwiftLint'
   pod 'LinearProgressBar'
-  pod 'SideMenu'
+  pod 'SideMenu', '~> 6.4.8'
   pod 'DropDown'
   pod 'NSData+FastHex'
+  pod 'Starscream', '~> 4.0.0'
 
   target 'weheTests' do
     inherit! :search_paths

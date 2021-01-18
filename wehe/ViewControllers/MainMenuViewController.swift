@@ -13,31 +13,41 @@ class MainMenuViewController: UIViewController {
 
     @IBOutlet weak var aboutWeheButton: UIButton!
     @IBOutlet weak var runTestButton: UIButton!
+    @IBOutlet weak var portTestButton: UIButton!
     @IBOutlet weak var previousResultsButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var functionalityButton: UIButton!
     @IBOutlet weak var viewOnlineDashboardButton: UIButton!
+    var portTests = false
 
     // MARK: Properties
     var settings: Settings?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         settings = Globals.settings
         beautify()
-
-        // side menu set-up
-//        let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
-//        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        SideMenuManager.default.menuPushStyle = .preserve
+        if let leftMenuNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController {
+            leftMenuNavigationController.pushStyle = .preserve
+            SideMenuManager.default.leftMenuNavigationController = leftMenuNavigationController
+        } else {
+//            Deprecated
+//            SideMenuManager.default.menuPushStyle = .preserve
+        }
     }
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let target = segue.destination
+        if let appCollection = target as? AppCollectionViewController {
+            if portTests {
+                appCollection.portTests = true
+            }
+            portTests = false
+        }
+    }
 
     // MARK: Private methods
 
@@ -53,10 +63,15 @@ class MainMenuViewController: UIViewController {
         }
         aboutWeheButton.setTitle(LocalizedStrings.aboutWehe.title, for: .normal)
         runTestButton.setTitle(LocalizedStrings.MainMenu.runTests, for: .normal)
+        portTestButton.setTitle(LocalizedStrings.MainMenu.runPortTests, for: .normal)
         previousResultsButton.setTitle(LocalizedStrings.MainMenu.previousResults, for: .normal)
         settingsButton.setTitle(LocalizedStrings.MainMenu.settings, for: .normal)
         functionalityButton.setTitle(LocalizedStrings.MainMenu.functionality, for: .normal)
         viewOnlineDashboardButton.setTitle(LocalizedStrings.MainMenu.viewOnlineDashboard, for: .normal)
     }
 
+    @IBAction func portTestTap(_ sender: Any) {
+        portTests = true
+        performSegue(withIdentifier: "portTest", sender: self)
+    }
 }

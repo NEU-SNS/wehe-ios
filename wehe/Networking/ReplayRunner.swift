@@ -9,6 +9,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class ReplayRunner {
     let replayView: ReplayViewProtocol
@@ -41,8 +42,21 @@ class ReplayRunner {
             }
             if success {
                 if testRegion == nil {
-                    self.app.historyCount = self.settings.historyCount
-                    self.settings.historyCount += 1
+                    if self.settings.server == "wehe4.meddle.mobi"{
+                        // if default server is used, try mlab server lookup
+                        // at most try max_num_mlab_lookup_trails times
+                        let max_num_mlab_lookup_trails = 1
+                        var num_mlab_lookup_trails = 0
+                        while (!self.app.wss_socket_is_connected) && (num_mlab_lookup_trails < max_num_mlab_lookup_trails) {
+                            self.app.mlab_server_lookup()
+                            num_mlab_lookup_trails += 1
+                        }
+                        if !self.app.wss_socket_is_connected { // if mlab server lookup fails, use ec2 server
+                            self.settings.serverIP = Helper.dnsLookup(hostname: self.settings.fallback_server) ?? self.settings.fallback_server
+                        }
+                        self.settings.historyCount += 1
+                        self.app.historyCount = self.settings.historyCount
+                    }
                 }
                 Helper.runOnUIThread {
                     if testRegion != nil {
@@ -83,7 +97,8 @@ class ReplayRunner {
 
     func updateProgress(value: Float) {
         replayView.updateOverallProgress()
-        var squishedValue = value / 2
+        var squishedValue = value
+        squishedValue = value / 2
         if app.replaysRan.count == 2 {
             squishedValue += 0.50
         }
@@ -106,6 +121,7 @@ class ReplayRunner {
         case .receiveError:replayExitWithError(reason: LocalizedStrings.ReplayRunner.errorReceivingPackets)
         case .senderError(let reason): replayExitWithError(reason: reason)
         case .sideChannelError(let reason): replayExitWithError(reason: reason)
+        case .connectionBlockError(let reason):replayExitWithError(reason: reason)
         case .otherError(let reason): replayExitWithError(reason: reason)
         }
     }
@@ -129,7 +145,8 @@ class ReplayRunner {
                     let app = self.app
                     let replayView = self.replayView
                     let settings = self.settings
-                    let resultWatcher = ResultWatcher(resultServer: settings.serverIP, resultServerPort: resultServerPort, id: id, historyCount: historyCount, app: app, replayView: replayView)
+                    let resultServerIP = settings.serverIP
+                    let resultWatcher = ResultWatcher(resultServer: resultServerIP, resultServerPort: resultServerPort, id: id, historyCount: historyCount, app: app, replayView: replayView)
                     self.resultWatcher = resultWatcher
                     resultWatcher.requestAnalysis(testID: 1)
                 }
@@ -246,11 +263,10 @@ class ReplayRunner {
             startReplay(deviceIP: "127.0.0.1", type: replayType, replay: currentReplay)
         case .tcp:
             let url = Helper.makeURL(ip: settings.serverIP, port: String(currentReplay.port), api: "WHATSMYIPMAN")
-            Alamofire.request(url).responseString { response in
-                if let result = response.result.value {
-                    self.startReplay(deviceIP: result, type: replayType, replay: currentReplay)
-                } else {
-                    self.startReplay(deviceIP: "127.0.0.1", type: replayType, replay: currentReplay)
+            AF.request(url).responseString { response in
+                switch response.result {
+                case .success(let result): self.startReplay(deviceIP: result, type: replayType, replay: currentReplay)
+                case .failure: self.startReplay(deviceIP: "127.0.0.1", type: replayType, replay: currentReplay)
                 }
             }
         }
@@ -259,6 +275,11 @@ class ReplayRunner {
     private func startReplay(deviceIP: String, type: ReplayType, replay: Replay) {
         if forceQuit {
             return
+        }
+        if deviceIP.contains(":") {
+            settings.ipVersion = "IPv6"
+        } else {
+            settings.ipVersion = "IPv4"
         }
 
         do {
@@ -273,6 +294,7 @@ class ReplayRunner {
             switch error {
             case .senderError(let reason): replayExitWithError(reason: reason)
             case .sideChannelError(let reason): replayExitWithError(reason: reason)
+            case .connectionBlockError(let reason): replayExitWithError(reason: reason)
             case .receiveError: replayExitWithError(reason: LocalizedStrings.ReplayRunner.receiverError)
             case .otherError(let reason): replayExitWithError(reason: reason)
             }

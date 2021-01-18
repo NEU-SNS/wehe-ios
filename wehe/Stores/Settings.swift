@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import SwiftyJSON
+import Starscream
 
 class Settings {
 
@@ -41,6 +44,12 @@ class Settings {
             defaults.set(serverIP, forKey: DefaultKeys.serverIP)
         }
     }
+    
+    var ipVersion: String {
+        didSet {
+            defaults.set(ipVersion, forKey: DefaultKeys.ipVersion)
+        }
+    }
 
     var port: Int {
         didSet {
@@ -71,7 +80,13 @@ class Settings {
             defaults.set(confirmationReplays, forKey: DefaultKeys.confirmationReplays)
         }
     }
-
+    
+    var connectedWebsockets: Dictionary<String, Bool> {
+        didSet {
+            defaults.set(connectedWebsockets, forKey: DefaultKeys.connectedWebsockets)
+        }
+    }
+    
     var sendStats: Bool {
         didSet {
             defaults.set(sendStats, forKey: DefaultKeys.sendStats)
@@ -109,6 +124,12 @@ class Settings {
         }
     }
 
+    var portTestID: Int {
+        didSet {
+            defaults.set(portTestID, forKey: DefaultKeys.portTestID)
+        }
+    }
+
     var packetTiming: Bool {
         didSet {
             defaults.set(packetTiming, forKey: DefaultKeys.packetTiming)
@@ -137,6 +158,7 @@ class Settings {
     static let noDifferentiationColor = UIColor(red: 0, green: 0.8078, blue: 0.2275, alpha: 1.0)
     static let pfxPassword = "weheiOSs1hTqETC8D"
     static let metaDataserver = "wehe-metadata.meddle.mobi"
+    let fallback_server = "wehe2.meddle.mobi"
 
     // Key constants to use for settings storage
     struct DefaultKeys {
@@ -145,7 +167,9 @@ class Settings {
         static let extraString = "extraString"
         static let server = "server"
         static let serverIP = "serverIP"
+        static let ipVersion = "IPv4"
         static let port = "port"
+        static let connectedWebsockets = "connectedWebsockets"
         static let resultsPort = "resultsPort"
         static let httpsPort = "httpsPort"
         static let httpsResultsPort = "httpsResultsPort"
@@ -154,6 +178,7 @@ class Settings {
         static let pValueThreshold = "KS2PValueThreshold"
         static let defaultThresholds = "defaultSettings"
         static let historyCount = "historyCount"
+        static let portTestID = "portTestID"
         static let sendStats = "sendStats"
         static let packetTiming = "packetTiming"
         static let firstTimeLaunch = "firstTimeLaunch"
@@ -163,22 +188,24 @@ class Settings {
     struct DefaultSettings {
         static let consent = false
         static let extraString = "DiffDetector"
-        static let server = "wehe2.meddle.mobi"
-        static let servers = ["wehe2.meddle.mobi", "wehe.arcep.fr"]
+        static let server = "wehe4.meddle.mobi"
+        static let servers = ["wehe4.meddle.mobi"]
         static let port = 55555
         static let resultsPort = 56565
         static let httpsPort = 55556
         static let httpsResultsPort = 56566
         static let confirmationReplays = true
-        static let areaThreshold = 0.1
-        static let pValueThreshold = 0.05
+        static let areaThreshold = 0.5
+        static let pValueThreshold = 0.01
         static let defaultThresholds = true
         static let ks2Ratio = 0.95
         static let historyCount = 0
+        static let portTestID = 0
         static let sendStats = true
         static let packetTiming = true
         static let firstTimeLaunch = true
         static let askedToRate = false
+        static let connectedWebsockets = [String: Bool]()
     }
 
     init() {
@@ -188,9 +215,6 @@ class Settings {
         } else {
             consent = DefaultSettings.consent
         }
-
-        server = defaults.string(forKey: DefaultKeys.server) ?? DefaultSettings.server
-        serverIP = Helper.dnsLookup(hostname: server) ?? DefaultSettings.server
 
         if let randomID = defaults.string(forKey: DefaultKeys.randomID) {
             self.randomID = randomID
@@ -211,7 +235,7 @@ class Settings {
         }
 
         extraString = defaults.string(forKey: DefaultKeys.extraString) ?? DefaultSettings.extraString
-
+        
         if defaults.object(forKey: DefaultKeys.confirmationReplays) != nil {
             confirmationReplays = defaults.bool(forKey: DefaultKeys.confirmationReplays)
         } else {
@@ -266,6 +290,12 @@ class Settings {
             historyCount = DefaultSettings.historyCount
         }
 
+        if defaults.object(forKey: DefaultKeys.portTestID) != nil {
+            portTestID = defaults.integer(forKey: DefaultKeys.portTestID)
+        } else {
+            portTestID = DefaultSettings.portTestID
+        }
+
         if defaults.object(forKey: DefaultKeys.sendStats) != nil {
             sendStats = defaults.bool(forKey: DefaultKeys.sendStats)
         } else {
@@ -290,5 +320,15 @@ class Settings {
             askedToRate = DefaultSettings.askedToRate
         }
 
+        server = defaults.string(forKey: DefaultKeys.server) ?? DefaultSettings.server
+        serverIP = Helper.dnsLookup(hostname: server) ?? DefaultSettings.server
+
+        if serverIP.contains(":") {
+            ipVersion = "IPv6"
+        } else {
+            ipVersion = "IPv4"
+        }
+        connectedWebsockets = [String: Bool]()
+        
     }
 }

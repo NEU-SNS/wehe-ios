@@ -58,7 +58,11 @@ class Sidechannel {
     func declareID(replayName: String, endOfTest: String, testID: String, realIP: String, settings: Settings, historyCount: Int) throws {
         var appVersion: String
         if let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            appVersion = bundleVersion
+            if let bundlebuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+                appVersion = bundleVersion + bundlebuild
+            } else {
+                appVersion = bundleVersion
+            }
         } else {
             appVersion = "1.0"
         }
@@ -69,7 +73,7 @@ class Sidechannel {
         do {
            try sendMessage(message: message)
         } catch {
-            throw ReplayError.sideChannelError(reason: "Error declaring ID to sidechannel")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.declearIDError)
         }
     }
 
@@ -88,7 +92,7 @@ class Sidechannel {
             let permission = try receiveMessage()
             return permission.components(separatedBy: ";")
         } catch {
-            throw ReplayError.sideChannelError(reason: "Error reading permissions")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.readPermissionError)
         }
     }
 
@@ -102,15 +106,15 @@ class Sidechannel {
 
     func sendMobileStats(settings: Settings) throws {
         do {
-//            let stats = Helper.getMobileStats(settings: settings)
-//            if settings.sendStats && stats != nil {
-//                try sendMessage(message: "WillSendMobileStats")
-//                try sendMessage(message: stats!)
-//            } else {
+            let stats = Helper.getMobileStats(settings: settings)
+            if settings.sendStats && stats != nil {
+                try sendMessage(message: "WillSendMobileStats")
+                try sendMessage(message: stats!)
+            } else {
                 try sendMessage(message: "NoMobileStats")
-//            }
+            }
         } catch {
-            throw ReplayError.sideChannelError(reason: "Error sending mobile stats")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.mobileStatError)
         }
     }
 
@@ -118,7 +122,7 @@ class Sidechannel {
         do {
             let mapping = try receiveMessage()
             guard let dataFromString = mapping.data(using: .utf8, allowLossyConversion: false) else {
-                throw SideChannelError.receiveError(reason: "Error reading port mapping from server")
+                throw SideChannelError.receiveError(reason: LocalizedStrings.errors.readPortMappingError)
             }
             let json = try JSON(data: dataFromString)
             if let portMapping = PortMapping(blob: json) {
@@ -157,7 +161,7 @@ class Sidechannel {
         do {
             try sendMessage(message: "DONE;" + String(duration))
         } catch {
-            throw ReplayError.sideChannelError(reason: "Error sending completion message")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.completionMessageError)
         }
     }
 
@@ -200,7 +204,7 @@ class Sidechannel {
             try sendMessage(message: "Result;No")
             _ = try receiveMessage()
         } catch is SideChannelError {
-            throw ReplayError.sideChannelError(reason: "Error sending or receiving result message")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.receiveResultError)
         }
     }
 
@@ -256,8 +260,13 @@ class Sidechannel {
                 objectBuffer.deinitialize(count: parsedLength + 1)
                 objectBuffer.deallocate()
             }
-
+            
             read = try client.read(into: objectBuffer, bufSize: parsedLength, truncate: true)
+            while read < parsedLength {
+                // large packet, needs to read from socket multiple times
+                let newRead = try client.read(into: objectBuffer, bufSize: parsedLength, truncate: true)
+                read += newRead
+            }
             guard read == parsedLength else {
                 throw SideChannelError.receiveError(reason: "did not receive enough object bytes from sidechannel")
             }

@@ -1,6 +1,0 @@
-framework module LinearProgressBar {
-  umbrella header "LinearProgressBar-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ResultTableViewController: UITableViewController, AlertCell {
 
@@ -52,17 +53,12 @@ class ResultTableViewController: UITableViewController, AlertCell {
         cell.result = result
         cell.cellDelegate = self
 
-        if result.differentiation == .differentiation {
-            if Helper.isFrenchLocale() && !result.reported {
-                cell.reportButton.isHidden = false
-                cell.arcepLogo.isHidden = false
-            } else {
-                cell.reportButton.isHidden = true
-                cell.arcepLogo.isHidden = true
-            }
+        if Helper.isFrenchLocale() && !result.reported && result.differentiation == .differentiation {
+            cell.reportButton.isHidden = false
+            cell.arcepLogo.isHidden = false
         } else {
-            cell.arcepLogo.isHidden = true
             cell.reportButton.isHidden = true
+            cell.arcepLogo.isHidden = true
         }
 
         let app = getAppByName(name: result.appName)
@@ -77,36 +73,12 @@ class ResultTableViewController: UITableViewController, AlertCell {
             cell.serverValueLabel.isHidden = true
             cell.serverLabel.isHidden = true
         }
-
-        if let areaThreshold = result.areaThreshold {
-            if areaThreshold != settings!.defaultAreaThreshold {
-                cell.areaThresholdLabel.text = LocalizedStrings.PreviousResults.areaThreshold
-                cell.areaThresholdValueLabel.text = String(format: "%d%%", Int(areaThreshold * 100))
-                cell.areaThresholdLabel.isHidden = false
-                cell.areaThresholdValueLabel.isHidden = false
-            } else {
-                cell.areaThresholdLabel.isHidden = true
-                cell.areaThresholdValueLabel.isHidden = true
-            }
-        } else {
-            cell.areaThresholdLabel.isHidden = true
-            cell.areaThresholdValueLabel.isHidden = true
-        }
-
-        if let ks2pThreshold = result.ks2pThreshold {
-            if ks2pThreshold != settings!.defaultpValueThreshold {
-                cell.ks2pThresholdLabel.text = LocalizedStrings.PreviousResults.ks2pValueThreshold
-                cell.ks2pTHresholdValueLabel.text = String(format: "%d%%", Int(ks2pThreshold * 100))
-                cell.ks2pThresholdLabel.isHidden = false
-                cell.ks2pTHresholdValueLabel.isHidden = false
-            } else {
-                cell.ks2pThresholdLabel.isHidden = true
-                cell.ks2pTHresholdValueLabel.isHidden = true
-            }
-        } else {
-            cell.ks2pThresholdLabel.isHidden = true
-            cell.ks2pTHresholdValueLabel.isHidden = true
-        }
+        cell.carrierLabel.text = LocalizedStrings.PreviousResults.carrier
+        cell.carrierValueLabel.text = result.carrier
+        cell.carrierLabel.isHidden = false
+        cell.carrierValueLabel.isHidden = false
+        cell.ipVersionValueLabel.text = result.ipVersion
+        cell.ipVersionLabel.isHidden = false
 
         let outputFormatter = DateFormatter()
 
@@ -115,9 +87,16 @@ class ResultTableViewController: UITableViewController, AlertCell {
         outputFormatter.doesRelativeDateFormatting = true
 
         cell.dateTextField.text = outputFormatter.string(from: result.date)
+        if app?.isPortTest ?? false { // port test
+            cell.appThroughputText.text = LocalizedStrings.App.portThroughput
+            cell.nonAppThroughputText.text = LocalizedStrings.App.baselineThroughput
+        } else { // normal test
+            cell.appThroughputText.text = LocalizedStrings.PreviousResults.appThroughput
+            cell.nonAppThroughputText.text = LocalizedStrings.PreviousResults.nonAppThroughput
+        }
 
-        cell.nonAppThroughputTextField.text = String(format: "%.1f Mbps", result.testAverageThroughput)
-        cell.appThroughputTextField.text = String(format: "%.1f Mbps", result.originalAverageThroughput)
+        cell.nonAppThroughputTextField.text = String(format: "%.1f " + LocalizedStrings.Generic.mbps, result.testAverageThroughput)
+        cell.appThroughputTextField.text = String(format: "%.1f " + LocalizedStrings.Generic.mbps, result.originalAverageThroughput)
 
         let differentiation = result.differentiation ?? .inconclusive
         switch differentiation {
@@ -126,7 +105,7 @@ class ResultTableViewController: UITableViewController, AlertCell {
             cell.statusTextField.text = LocalizedStrings.Generic.noDifferentition
         case .inconclusive:
             cell.statusTextField.textColor = UIColor.orange
-            cell.statusTextField.text = LocalizedStrings.Generic.resultsInconclusive
+            cell.statusTextField.text = LocalizedStrings.Generic.inconclusive
         case .differentiation:
             cell.statusTextField.textColor = UIColor.red
             cell.statusTextField.text = LocalizedStrings.Generic.differentition

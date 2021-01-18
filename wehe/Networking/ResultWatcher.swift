@@ -32,7 +32,7 @@ class ResultWatcher {
     var resultAttempts = 0
 
     var forceQuit = false
-    var manager: SessionManager?
+    var session: Session!
 
     init(resultServer: String, resultServerPort: Int, id: String, historyCount: Int, app: App, replayView: ReplayViewProtocol) {
         self.id = id
@@ -61,27 +61,24 @@ class ResultWatcher {
 
         // Alamofire runs the callback on the main thread by default for some reason
         let queue = DispatchQueue.global(qos: .utility)
-        manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default, delegate: SessionManager.default.delegate, serverTrustPolicyManager: Helper.serverTrustPoliceManager(server: annalysisIP))
-
-        manager!.request(analysisUrl, method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString)).responseJSON(queue: queue) { response in
+        session = Session(configuration: URLSessionConfiguration.af.default, serverTrustManager: Helper.getServerTrustManager(server: annalysisIP))
+        session.request(analysisUrl, method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString)).responseJSON(queue: queue) { response in
             switch response.result {
-            case .success:
-                if let result = response.result.value {
-                    let json = JSON(result)
+            case .success(let value):
+                    let json = JSON(value)
                     if json != JSON.null && json["success"].boolValue {
                         self.updateStatus(status: .waitingForResults)
                         sleep(2)
                         self.getResults(testID: testID)
                         return
                     }
-                }
                 fallthrough
             case .failure:
                 if self.analysisAttempts <= self.maxAnalysisAttempts {
                     self.updateStatus(status: .error, error: "Error requesting analysis from the server, retrying")
                     self.requestAnalysis(testID: testID)
                 } else {
-                    self.updateStatus(status: .error, error: "Error requesting analysis from the server. Please rerun the test later")
+                    self.updateStatus(status: .error, error: "Error sending or receiving result message")
                 }
 
             }
@@ -106,18 +103,20 @@ class ResultWatcher {
         let parameters = ["command": "singleResult", "userID": id, "historyCount": String(historyCount), "testID": String(testID)]
         let queue = DispatchQueue.global(qos: .utility)
 
-        manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default, delegate: SessionManager.default.delegate, serverTrustPolicyManager: Helper.serverTrustPoliceManager(server: annalysisIP))
-        manager!.session.configuration.timeoutIntervalForRequest = 5
-        manager!.request(analysisUrl, parameters: parameters).responseJSON(queue: queue) { response in
+        session = Session(configuration: URLSessionConfiguration.af.default, serverTrustManager: Helper.getServerTrustManager(server: annalysisIP))
+        session.sessionConfiguration.timeoutIntervalForRequest = 5
+        session.request(analysisUrl, parameters: parameters).responseJSON(queue: queue) { response in
             switch response.result {
-            case .success:
-            if let result = response.result.value {
-                let json = JSON(result)
+            case .success(let value):
+                let json = JSON(value)
                 if json != JSON.null && json["success"].boolValue {
-                    print(response.request!.description)
                     Helper.runOnUIThread {
                         self.gotResult = true
                         self.updateStatus(status: .receivedResults)
+                        if self.app.wss_socket_is_connected { // connected to a mlab server, need to disconnect
+                            print("wss result received, ", self.app.name, self.app.wehe_server_domain)
+                            self.app.wss_socket.disconnect()
+                        }
 
                         if let serverResult = self.handleResult(json: json, appName: self.appName) {
                             self.app.differentiation = serverResult.differentiation
@@ -131,7 +130,6 @@ class ResultWatcher {
                 } else {
                    fallthrough
                 }
-            }
             case .failure:
                 self.resultAttempts += 1
                 sleep(UInt32(self.sleepConstant * self.resultAttempts))
@@ -149,52 +147,41 @@ class ResultWatcher {
     }
 
     private func handleResult(json: JSON, appName: String) -> Result? {
-        guard let result = Result(blob: json, appName: appName, server: settings.server, area: settings.areaThreshold, ks2p: settings.pValueThreshold) else {
+        // Getting carrier info for this test
+        var carrier = LocalizedStrings.Generic.defaultCarrier
+        if !Helper.isOnWiFi() {
+            carrier = Helper.getCarrier() ?? "unknown"
+        }
+        guard let result = Result(blob: json, appName: appName, server: settings.server, carrier: carrier, ipVersion: settings.ipVersion, area: settings.areaThreshold, ks2p: settings.pValueThreshold) else {
             self.updateStatus(status: .error, error: "Received malformed results from the server")
             return nil
         }
 
-        let areaTestThreshold =  settings.defaultThresholds ?  settings.defaultAreaThreshold : settings.areaThreshold
+        var areaTestThreshold =  settings.defaultThresholds ?  settings.defaultAreaThreshold : settings.areaThreshold
         let ks2Threshold = settings.defaultThresholds ? settings.defaultpValueThreshold : settings.pValueThreshold
         let ks2Ratio = settings.defaultKS2Ratio
+        
+        // If the area test threshold is default value AND
+        // one of the throughput is >= 10 Mbps, we should adjust the threshold
+        if areaTestThreshold == 0.5 && max(result.testAverageThroughput,
+                                            result.originalAverageThroughput) >= 10 {
+            areaTestThreshold = 0.3
+        }
 
-        let aboveArea = result.areaTest >= areaTestThreshold
+        let aboveArea = abs(result.areaTest) >= areaTestThreshold
         let belowP = result.ks2pVal < ks2Threshold
         let trustPValue = result.ks2RatioTest >= ks2Ratio
-
-//        print("areaTestThreshold " + String(areaTestThreshold * 100))
-//        print("ks2Threshold " + String(ks2Threshold * 100))
-//        print("ks2Ratio " + String(ks2Ratio * 100))
-//
-//        print("---")
-//
-//        print("areaTest " + String(result.areaTest * 100))
-//        print("ks2pVal " + String(result.ks2pVal * 100))
-//        print("ks2RatioTest " + String(result.ks2RatioTest * 100))
-//
-//        print("---")
-//
-//        print("aboveArea " + String(aboveArea))
-//        print("belowP " + String(belowP))
-//        print("trustPValue " + String(trustPValue))
 
         var differentiation = false
         var inconclusive = false
 
-        differentiation = trustPValue && belowP && aboveArea
-        inconclusive = !trustPValue && belowP && aboveArea
-
-//        if !trustPValue {
-//            differentiation = aboveArea
-//        } else {
-//            if aboveArea && belowP {
-//                differentiation = true
-//            }
-//
-//            if aboveArea != belowP {
-//                inconclusive = true
-//            }
-//        }
+        if aboveArea {
+            if trustPValue && aboveArea && belowP {
+                differentiation = true
+            } else {
+                inconclusive = true
+            }
+        }
 
         if inconclusive {
             result.differentiation = .inconclusive
@@ -215,10 +202,6 @@ class ResultWatcher {
             + ";" + diffDebugString + ";" + String(round(result.originalAverageThroughput * 1000) / 1000) + ";" + String(round(result.testAverageThroughput * 1000) / 1000))
 
         return result
-//        app.differentiation = result.differentiation
-//        app.appThroughput = result.originalAverageThroughput
-//        app.nonAppThroughput = result.testAverageThroughput
-//        replayViewController.receivedResult(result: result, app: app)
 
     }
 }

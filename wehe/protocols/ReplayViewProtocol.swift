@@ -20,6 +20,7 @@ protocol ReplayViewProtocol {
 enum ReplayError: Error {
     case sideChannelError(reason: String)
     case senderError(reason: String)
+    case connectionBlockError(reason: String)
     case receiveError
     case otherError(reason: String)
 }

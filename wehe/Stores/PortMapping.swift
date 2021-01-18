@@ -28,12 +28,15 @@ class PortMapping {
         case .udp: map = udpMap
         case .tcp: map = tcpMap
         }
-
-        guard map[ip][port].exists() else {
-            return nil
+        var portKey = port
+        if !map[ip][port].exists() {
+            portKey = String(String(port.reversed()).padding(toLength: 5, withPad: "0", startingAt: 0).reversed())
+            if !map[ip][portKey].exists() {
+                return nil
+            }
         }
 
-        guard let portMap = map[ip][port].array else {
+        guard let portMap = map[ip][portKey].array else {
             return nil
         }
 

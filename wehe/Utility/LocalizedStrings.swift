@@ -12,19 +12,29 @@ struct LocalizedStrings {
 
     struct Generic {
         static let back = NSLocalizedString("Back", comment: "")
-        static let differentition = NSLocalizedString("Differentiation", comment: "")
+        static let differentition = NSLocalizedString("Differentiation detected", comment: "")
         static let noDifferentition = NSLocalizedString("No differentiation", comment: "")
-        static let resultsInconclusive = NSLocalizedString("Results inconclusive", comment: "")
+        static let inconclusive = NSLocalizedString("Results inconclusive (please try running the test again)", comment: "")
+        static let inconclusiveNoRerun = NSLocalizedString("Results inconclusive", comment: "")
         static let none = NSLocalizedString("None", comment: "")
         static let queued = NSLocalizedString("Queued", comment: "")
         static let enter = NSLocalizedString("Enter", comment: "")
         static let cancel = NSLocalizedString("Cancel", comment: "")
+        static let testDone = NSLocalizedString("Done", comment: "")
         static let yes = NSLocalizedString("Yes", comment: "")
         static let no = NSLocalizedString("No", comment: "")
         static let error = NSLocalizedString("Error", comment: "")
         static let result = NSLocalizedString("Result", comment: "")
         static let retry = NSLocalizedString("Retry", comment: "")
         static let warning = NSLocalizedString("Warning", comment: "")
+        static let defaultCarrier = NSLocalizedString("WiFi", comment: "")
+        static let video = NSLocalizedString("Video streaming", comment: "")
+        static let music = NSLocalizedString("Music streaming", comment: "")
+        static let videoconferencing = NSLocalizedString("Videoconferencing", comment: "")
+        static let large = NSLocalizedString("50 MB file", comment: "")
+        static let small = NSLocalizedString("10 MB file", comment: "")
+        static let mbps = NSLocalizedString("Mbps", comment: "")
+        static let MB = NSLocalizedString("MB", comment: "")
     }
 
     struct App {
@@ -35,20 +45,25 @@ struct LocalizedStrings {
         static let receivingPortMapping = NSLocalizedString("Asking server for port mapping", comment: "")
         static let originalReplay = NSLocalizedString("Running the original test", comment: "")
         static let randomReplay = NSLocalizedString("Running the randomized test", comment: "")
+        static let testPortReplay = NSLocalizedString("Running the port test", comment: "")
+        static let baselinePortReplay = NSLocalizedString("Running the baseline port 443 test", comment: "")
         static let finishedReplay = NSLocalizedString("Done running tests", comment: "")
         static let waitingForResults = NSLocalizedString("Requesting results from the server", comment: "")
         static let receivedResults = NSLocalizedString("Received results", comment: "")
         static let willRerun = NSLocalizedString("Results inconclusive, re-running test", comment: "")
         static let error = NSLocalizedString("Error", comment: "")
-
+        static let block = NSLocalizedString("Test blocked", comment: "")
         static let differentiation = NSLocalizedString("Differentiation detected", comment: "")
         static let noDifferentiation = NSLocalizedString("No differentiation detected", comment: "")
-        static let inconclusive = NSLocalizedString("results inconclusive", comment: "")
+        static let inconclusive = NSLocalizedString("Results inconclusive", comment: "")
+        static let baselineThroughput = NSLocalizedString("Port 443 throughput", comment: "")
+        static let portThroughput = NSLocalizedString("Test port throughput", comment: "")
     }
 
     struct MainMenu {
         static let menu = NSLocalizedString("Menu", comment: "")
-        static let runTests = NSLocalizedString("Run Tests", comment: "")
+        static let runTests = NSLocalizedString("Run differentiation tests", comment: "")
+        static let runPortTests = NSLocalizedString("Run Port Tests", comment: "")
         static let previousResults = NSLocalizedString("Previous Results", comment: "")
         static let settings = NSLocalizedString("Settings", comment: "")
         static let viewConsentForm = NSLocalizedString("View Consent Form", comment: "")
@@ -57,9 +72,12 @@ struct LocalizedStrings {
     }
 
     struct AppTable {
-        static let runTests = NSLocalizedString("Run Tests", comment: "")
+        static let runTests = NSLocalizedString("Run tests", comment: "")
         static let time = NSLocalizedString("Time", comment: "")
-        static let size = NSLocalizedString("Size", comment: "")
+        static let size = NSLocalizedString("Total size", comment: "")
+        static let portTestSize = NSLocalizedString("MB per port test)", comment: "")
+        static let fileSize = NSLocalizedString("File size", comment: "")
+        static let portTestsWarning = NSLocalizedString("Please select at least 2 ports to test", comment: "")
         static let wifiWarning = NSLocalizedString("If you are trying to run tests for %@, disconnect from the Wi-Fi and restart the app", comment: "")
         static let defaultMobileCareer = NSLocalizedString("your mobile carrier", comment: "")
     }
@@ -82,9 +100,6 @@ struct LocalizedStrings {
         static let alertArcep = NSLocalizedString("Alert Arcep", comment: "")
         static let numberOfTest = NSLocalizedString("%d of %d", comment: "")
 
-        static let noDifferentiation = NSLocalizedString("No differentiation detected", comment: "")
-        static let resultInconclusive = NSLocalizedString("Results inconclusive, please try running the test again", comment: "")
-
         struct Banner {
             static let looksLikeUsingIpv6 = NSLocalizedString("Looks like your connection is using ipv6 which may not be supported", comment: "")
         }
@@ -96,6 +111,7 @@ struct LocalizedStrings {
             static let reRunTestHuh = NSLocalizedString("Rerun Tests?", comment: "")
             static let reRunAllTestsAction = NSLocalizedString("Rerun All Tests", comment: "")
             static let reRunTestsWithErrorsAction = NSLocalizedString("Rerun Tests with Errors", comment: "")
+            static let reRunDifferentiatedAction = NSLocalizedString("Rerun Tests with detected differentiation", comment: "")
             static let reRunTestsWithInconclusiveAction = NSLocalizedString("Rerun Inconclusive Tests", comment: "")
             static let warning = NSLocalizedString("Warning", comment: "")
             static let warningMessage = NSLocalizedString("This action will stop the active replay(s) and not wait for results. Existing results will be saved. Are you sure?", comment: "")
@@ -117,6 +133,7 @@ struct LocalizedStrings {
         static let areaThreshold = NSLocalizedString("Area Threshold", comment: "")
         static let ks2pValueThreshold = NSLocalizedString("KS2 P Value Threshold", comment: "")
         static let server = NSLocalizedString("Server", comment: "")
+        static let carrier = NSLocalizedString("Carrier", comment: "")
     }
 
     struct ConsentForm {
@@ -146,9 +163,32 @@ struct LocalizedStrings {
 
     struct ReplayRunner {
         static let errorReadingReplay = NSLocalizedString("Error reading replay files", comment: "")
-        static let errorReceivingPackets = NSLocalizedString("Error recieving packets from server", comment: "")
+        static let errorReceivingPackets = NSLocalizedString("It seems that Wehe could not receive any result. This might be caused by your ISP blocking this test or an equipment on your local network or the server side.", comment: "")
         static let errorUnknownError = NSLocalizedString("Replay failed due to unknown error", comment: "")
         static let receiverError = NSLocalizedString("Receiver error", comment: "")
+    }
+    
+    struct errors {
+        static let connectionError = NSLocalizedString("Connection failed", comment: "")
+        static let connectionBlockError = NSLocalizedString("Test blocked", comment: "")
+        static let sideChannelConnectionError = NSLocalizedString("Error connecting to sidechannel", comment: "")
+        static let sideChannelCreationError = NSLocalizedString("Error creating sidechannel socket", comment: "")
+        static let sideChannelError = NSLocalizedString("Unknown sidechannel error", comment: "")
+        static let permissionError = NSLocalizedString("Unknown permission error", comment: "")
+        static let malformedPermissionError = NSLocalizedString("Received malformed permissions", comment: "")
+        static let unknownPermissionError = NSLocalizedString("Unknown permission status", comment: "")
+        static let unknownReplayError = NSLocalizedString("Replay does not match the replay on the server", comment: "")
+        static let clientIPError = NSLocalizedString("A client with this IP is already connected", comment: "")
+        static let serverResourcesError = NSLocalizedString("Server is low on resources, try again later", comment: "")
+        static let replayFailedError = NSLocalizedString("Replay failed for unknown reason", comment: "")
+        static let portMappingError = NSLocalizedString("Error mapping ports", comment: "")
+        static let tcpError = NSLocalizedString("Failed to send TCP packet", comment: "")
+        static let declearIDError = NSLocalizedString("Error declaring ID to sidechannel", comment: "")
+        static let readPermissionError = NSLocalizedString("Error reading permissions", comment: "")
+        static let mobileStatError = NSLocalizedString("Error sending mobile stats", comment: "")
+        static let readPortMappingError = NSLocalizedString("Error reading port mapping from server", comment: "")
+        static let completionMessageError = NSLocalizedString("Error sending completion message", comment: "")
+        static let receiveResultError = NSLocalizedString("Error sending or receiving result message", comment: "")
     }
     
     struct aboutWehe {
@@ -171,7 +211,13 @@ struct LocalizedStrings {
         static let resetDPIProgress = NSLocalizedString("Reset DPI Progress", comment: "")
         static let youWillLoseProgress = NSLocalizedString("You will lose your DPI progress and have to start over, are you sure?", comment: "")
         static let previousResult = NSLocalizedString("Previous Result:\n", comment: "")
-        static let bitrateInfo = NSLocalizedString("360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps", comment: "")
+        static let throttledBitrateInfo = NSLocalizedString("This test might be throttled. This throttling might come from your ISP or an equipment on your local network or the server side. \n\nBitrate Info\n360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps\n", comment: "")
+        static let defaultInfo = NSLocalizedString("Bitrate Info\n360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps\n", comment: "")
+        static let prioritizedBitrateInfo = NSLocalizedString("This test might be prioritized. This prioritization might come from your ISP or an equipment on your local network or the server side.", comment: "")
+        static let blockInfo = NSLocalizedString("This test might be blocked. This blocking might come from your ISP or an equipment on your local network or the server side.", comment: "")
+        static let prioritizedPortBitrateInfo = NSLocalizedString("HTTPS traffic on this port might be prioritised. This prioritization might come from your ISP, an equipment on your local network or the server side.", comment: "")
+        static let throttledPortBitrateInfo = NSLocalizedString("HTTPS traffic on this port might be throttled. This throttling might come from your ISP or an equipment on your local network or the server side. \n\nBitrate Info\n360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps\n", comment: "")
+        static let portBlockInfo = NSLocalizedString("HTTPS traffic on this port might be blocked. This blocking might come from your ISP or an equipment on your local network or the server side.", comment: "")
         struct BitrateInfoCell {
             static let title = NSLocalizedString("Bitrate Info", comment: "")
         }

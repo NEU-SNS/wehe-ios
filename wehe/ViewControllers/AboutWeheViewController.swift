@@ -13,7 +13,9 @@ class AboutWeheViewController: UIViewController {
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentsTextView: UITextView!
-
+    
+    @IBOutlet weak var versionNumber: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         beautify()
@@ -26,20 +28,21 @@ class AboutWeheViewController: UIViewController {
         contentsTextView.setContentOffset(.zero, animated: true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     private func beautify() {
         backButton.title = LocalizedStrings.Generic.back
         titleLabel.text = LocalizedStrings.aboutWehe.title
         contentsTextView.text = LocalizedStrings.aboutWehe.contents
+        var appVersion: String
+        if let bundleVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            if let bundlebuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+                appVersion = bundleVersion + bundlebuild
+            } else {
+                appVersion = bundleVersion
+            }
+        } else {
+            appVersion = "1.0"
+        }
+        versionNumber.text = appVersion
     }
 
     @IBAction func backButtonPressed(_ sender: Any) {

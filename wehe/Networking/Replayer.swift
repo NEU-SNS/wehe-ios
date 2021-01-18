@@ -23,7 +23,7 @@ class Replayer {
     let family: Socket.ProtocolFamily
 
     let sidechannel: Sidechannel
-    let metaDatachannel: MetaDataChannel?
+//    let metaDatachannel: MetaDataChannel?
     var error = false
     var forceQuit = false
 
@@ -52,10 +52,10 @@ class Replayer {
         let port = Settings.https ? settings.httpsPort : settings.port
 
         guard let sidechannel = Sidechannel(address: self.serverIP, port: port, family: family) else {
-            throw ReplayError.sideChannelError(reason: "Error creating sidechannel socket")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.sideChannelCreationError)
         }
 
-        self.metaDatachannel = MetaDataChannel(address: Settings.metaDataserver, port: port, family: family)
+//        self.metaDatachannel = MetaDataChannel(address: Settings.metaDataserver, port: port, family: family)
 
         self.sidechannel = sidechannel
 
@@ -63,20 +63,19 @@ class Replayer {
             try sidechannel.connect()
         } catch is SideChannelError {
             self.error = true
-            throw ReplayError.sideChannelError(reason: "Error connecting to sidechannel")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.sideChannelConnectionError)
         } catch let error {
             self.error = true
-            print(error)
-            throw ReplayError.sideChannelError(reason: "Unknown sidechannel error")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.sideChannelError)
         }
-        do {
-            try metaDatachannel?.connect()
-        } catch is SideChannelError {
-            print("error connecting to metadata server")
-        } catch let error {
-            print(error)
-            print("error connecting to metadata server")
-        }
+//        do {
+//            try metaDatachannel?.connect()
+//        } catch is SideChannelError {
+//            print("error connecting to metadata server")
+//        } catch let error {
+//            print(error)
+//            print("error connecting to metadata server")
+//        }
     }
 
     func cancel() {
@@ -96,6 +95,7 @@ class Replayer {
             } else {
                 endOfTest = "True"
             }
+            
         case .random:
             testID = "1"
             if app.replaysRan.contains(.original) {
@@ -123,7 +123,7 @@ class Replayer {
             }
 
             guard permissions.count == 3 || permissions.count == 2 else {
-                throw ReplayError.sideChannelError(reason: "Received malformed permissions string")
+                throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.malformedPermissionError)
             }
 
             let permissionError = permissions[0]
@@ -132,13 +132,13 @@ class Replayer {
             if permissionError == "0" {
                 switch permissionData {
                 case "1":
-                    throw ReplayError.sideChannelError(reason: "Replay does not match the replay on the server")
+                    throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.unknownReplayError)
                 case "2":
-                    throw ReplayError.sideChannelError(reason: "A client with this IP is already connected")
+                    throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.clientIPError)
                 case "3":
-                    throw ReplayError.sideChannelError(reason: "Server is low on resources, try again later")
+                    throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.serverResourcesError)
                 default:
-                    throw ReplayError.sideChannelError(reason: "Unknown permission error")
+                    throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.permissionError)
                 }
             } else if permissionError == "1" {
                 Helper.runOnUIThread {
@@ -146,7 +146,7 @@ class Replayer {
                 }
 
             } else {
-                throw ReplayError.sideChannelError(reason: "Unknown permission status")
+                throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.unknownPermissionError)
             }
 
             guard let numberOfTimeSlices = Double(permissions[2]) else {
@@ -155,8 +155,8 @@ class Replayer {
 
             try sidechannel.sendIperf()
             try sidechannel.sendMobileStats(settings: settings)
-            metaDatachannel?.sendMobileStats(settings: settings, testID: testID, historyCount: String(historyCount))
-            metaDatachannel?.close()
+//            metaDatachannel?.sendMobileStats(settings: settings, testID: testID, historyCount: String(historyCount))
+//            metaDatachannel?.close()
 
             Helper.runOnUIThread {
 //                self.replayRunner.updateProgress(value: 0.7)
@@ -165,20 +165,40 @@ class Replayer {
             }
 
             let portMapping = try sidechannel.receivePortMapping()
+            sleep(1)
             let udpSenderCount = try sidechannel.receiveSenderCount() // only udp replays care about this
 
             Helper.runOnUIThread {
                 self.replayRunner.updateProgress(value: 0)
                 switch self.replayType {
-                case .original: self.replayRunner.updateStatus(newStatus: .originalReplay)
-                case .random:   self.replayRunner.updateStatus(newStatus: .randomReplay)
+                case .original:
+                    if self.app.isPortTest {
+                        self.replayRunner.updateStatus(newStatus: .testPortReplay)
+                    } else {
+                        self.replayRunner.updateStatus(newStatus: .originalReplay)
+                    }
+                case .random:
+                    if self.app.isPortTest {
+                        self.replayRunner.updateStatus(newStatus: .baselinePortReplay)
+                    } else {
+                        self.replayRunner.updateStatus(newStatus: .randomReplay)
+                    }
                 case .dpi:      self.replayRunner.updateStatus(newStatus: .originalReplay)
                 }
             }
 
             switch replay.type {
-            case .tcp: try runTCPReplay(portMapping: portMapping, clientIP: permissionData, numberOfTimeSlices: numberOfTimeSlices)
-            case .udp: try self.runUDPReplay(portMapping: portMapping, clientIP: permissionData, senderCount: udpSenderCount, numberOfTimeSlices: numberOfTimeSlices)
+            case .tcp:
+                if self.app.isPortTest {
+                    let portTestTimeout = 30
+                    try runTCPReplay(portMapping: portMapping, clientIP: permissionData, numberOfTimeSlices: numberOfTimeSlices, testTimeout: Double(portTestTimeout))
+                } else {
+                    let appTestTimeout = 45
+                    try runTCPReplay(portMapping: portMapping, clientIP: permissionData, numberOfTimeSlices: numberOfTimeSlices, testTimeout: Double(appTestTimeout))
+                }
+            case .udp:
+                let appTestTimeout = 40
+                try self.runUDPReplay(portMapping: portMapping, clientIP: permissionData, senderCount: udpSenderCount, numberOfTimeSlices: numberOfTimeSlices, testTimeout: Double(appTestTimeout))
             }
 
         } catch let error as ReplayError {
@@ -188,13 +208,13 @@ class Replayer {
         } catch let error {
             print(error.localizedDescription)
             Helper.runOnUIThread {
-                self.replayRunner.replayFailed(error: ReplayError.otherError(reason: "Replay failed for unknown reason"))
+                self.replayRunner.replayFailed(error: ReplayError.otherError(reason: LocalizedStrings.errors.replayFailedError))
             }
         }
     }
 
     // MARK: Private methods
-    private func runUDPReplay(portMapping: PortMapping, clientIP: String, senderCount: Int, numberOfTimeSlices: Double) throws {
+    private func runUDPReplay(portMapping: PortMapping, clientIP: String, senderCount: Int, numberOfTimeSlices: Double, testTimeout: Double) throws {
 
         defer {
             sidechannel.close()
@@ -202,12 +222,20 @@ class Replayer {
 
         let firstPacket = replay.packets[0]
         let ipAndPort = firstPacket.cSPair.components(separatedBy: "-")[1]
-        let ip = ipAndPort.components(separatedBy: ".")[0..<4].joined(separator: ".")
-        let port = ipAndPort.components(separatedBy: ".")[4]
+        //ipv6
+        let ip: String
+        let port: String
+        if ipAndPort.contains(":") {
+            ip = ipAndPort.components(separatedBy: ".")[0]
+            port = ipAndPort.components(separatedBy: ".")[1]
+        } else {
+            ip = ipAndPort.components(separatedBy: ".")[0..<4].joined(separator: ".")
+            port = ipAndPort.components(separatedBy: ".")[4]
+        }
 
         // figure out the ip and port for the socket
         guard var spPair = portMapping.getPortMapping(ip: ip, port: port, prot: .udp) else {
-            throw ReplayError.sideChannelError(reason: "Error mapping ports")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.portMappingError)
         }
 
         if spPair.ip == "" {
@@ -224,7 +252,7 @@ class Replayer {
             //try client.connect(to: spPair.ip, port: spPair.port, timeout: socketConnectTimeout)
         } catch let error {
             print("Error establishing UDP socket \(error)")
-            throw ReplayError.otherError(reason: "Error establishing UDP socket")
+            throw ReplayError.connectionBlockError(reason: LocalizedStrings.errors.connectionBlockError)
         }
 
         defer {
@@ -233,7 +261,6 @@ class Replayer {
 
         // Notifier thread
         let group = DispatchGroup()
-
         var keepReceiving = true
         group.enter()
         DispatchQueue.global(qos: .utility).async {
@@ -246,13 +273,11 @@ class Replayer {
             while true {
                 do {
                     let udpInfo = try self.sidechannel.getUDPInformation()
-                    print(udpInfo[0])
                     switch udpInfo[0] {
                     case "STARTED": inProgress += 1
                     case "DONE":
                         inProgress -= 1
                         if inProgress == 0 {
-                            print("returning")
                             return
                         }
 
@@ -261,8 +286,7 @@ class Replayer {
                 } catch {
                     print("[Notifier] notifier error")
                 }
-
-                if self.forceQuit || (!keepReceiving && inProgress == 0) {
+                if self.forceQuit || !keepReceiving || (inProgress == 0) {
                     print("Returning 2")
                     return
                 }
@@ -272,7 +296,7 @@ class Replayer {
         // Analyzer Thread
         var keepAnalyzing = true
         var timeSlices: [Double: Int] = [:]
-        let timePerSlice = Double(app.time) / numberOfTimeSlices
+        let timePerSlice = Double(min(app.time, testTimeout)) / numberOfTimeSlices
         let semaphore = DispatchSemaphore(value: 1)
         let analyzerWaitGroup = DispatchGroup()
 
@@ -328,17 +352,13 @@ class Replayer {
             }
 
             for (index, packet) in self.replay.packets.enumerated() {
+                let timePassed = timeReplayStarted.timeIntervalSinceNow * -1
                 if self.settings.packetTiming {
-                    let timePassed = timeReplayStarted.timeIntervalSinceNow * -1
                     if timePassed < packet.timestamp {
                         let sleepTime = UInt32((packet.timestamp - timePassed) * 1000000)
                         //print("sleeping for " + String(sleepTime) + " millionths of a second")
                         //sentOnTime += 1
                         usleep(sleepTime)
-                    } else {
-                        //let interval = packet.timestamp - timePassed
-                        //print("Falling behind " + String(interval))
-                        //fellBehind += 1
                     }
                 }
 
@@ -347,6 +367,10 @@ class Replayer {
                 } catch let error {
                     print("Error sending UDP packet \(error)")
                     continue
+                }
+
+                if (testTimeout != 0) && (timePassed > testTimeout) {
+                    break
                 }
 
                 let progress = Float(index + 1) / Float(self.replay.packets.count)
@@ -385,14 +409,14 @@ class Replayer {
         }
     }
 
-    private func runTCPReplay(portMapping: PortMapping, clientIP: String, numberOfTimeSlices: Double) throws {
+    private func runTCPReplay(portMapping: PortMapping, clientIP: String, numberOfTimeSlices: Double, testTimeout: Double) throws {
         defer {
             sidechannel.close()
         }
 
         // figure out the ip and port for the socket
         guard var spPair = portMapping.getPortMapping(ip: replay.destinationIP!, port: replay.port, prot: .tcp) else {
-            throw ReplayError.sideChannelError(reason: "Error mapping ports")
+            throw ReplayError.sideChannelError(reason: LocalizedStrings.errors.portMappingError)
         }
         if spPair.ip == "" {
             spPair.ip = settings.serverIP
@@ -406,7 +430,7 @@ class Replayer {
             try client.connect(to: spPair.ip, port: spPair.port, timeout: socketConnectTimeout)
         } catch let error {
             print("Error establishing TCP socket \(error)")
-            throw ReplayError.otherError(reason: "Error establishing TCP socket")
+            throw ReplayError.connectionBlockError(reason: LocalizedStrings.errors.connectionBlockError)
         }
 
         defer {
@@ -418,7 +442,7 @@ class Replayer {
         var keepAnalyzing = true
         var timeSlices: [Double: Int] = [:]
         let analyzerWaitGroup = DispatchGroup()
-        let timePerSlice = Double(app.time) / numberOfTimeSlices
+        let timePerSlice = Double(min(app.time, testTimeout)) / numberOfTimeSlices
         let semaphore = DispatchSemaphore(value: 1)
         analyzerWaitGroup.enter()
 
@@ -444,10 +468,13 @@ class Replayer {
             if forceQuit {
                 return
             }
+            let timePassed = timeReplayStarted.timeIntervalSinceNow * -1
+            if (testTimeout != 0) && (timePassed > testTimeout) {
+                break
+            }
 
             do {
-                print("Sending packet " + String(index + 1) + "/" + String(replay.packets.count))
-                _ = try handleTCPPacket(packet: packet, client: client, timeStarted: timeReplayStarted, sem: semaphore)
+                _ = try handleTCPPacket(packet: packet, client: client, testTimeout: testTimeout, timeStarted: timeReplayStarted, sem: semaphore)
                 let progress = Float(index + 1) / Float(replay.packets.count)
                 Helper.runOnUIThread {
                     self.replayRunner.updateProgress(value: progress)
@@ -457,7 +484,7 @@ class Replayer {
             }
         }
 
-         print("Sent " + String(replay.packets.count) + " packets, " + String(fellBehind) + " fell behind, " + String(sentOnTime) + " were sent on time")
+        print("Sent " + String(replay.packets.count) + " packets, " + String(fellBehind) + " fell behind, " + String(sentOnTime) + " were sent on time")
 
         Helper.runOnUIThread {
             self.replayRunner.updateProgress(value: 1.0)
@@ -478,6 +505,13 @@ class Replayer {
         do {
             try sidechannel.sendDone(duration: timePassed)
             try sidechannel.sendTimeSlices(slices: averageThroughputs)
+            if app.isPortTest {
+                var total: Double = 0
+                for slice in averageThroughputs {
+                    total += slice.value
+                }
+                app.appThroughput = total / Double(averageThroughputs.count)
+            }
             try sidechannel.getResult()
         } catch let error {
             throw error
@@ -488,13 +522,12 @@ class Replayer {
         }
     }
 
-    private func handleTCPPacket(packet: Packet, client: Socket, timeStarted: Date, sem: DispatchSemaphore) throws -> Int {
-
-        if settings.packetTiming {
+    private func handleTCPPacket(packet: Packet, client: Socket, testTimeout: Double, timeStarted: Date, sem: DispatchSemaphore) throws -> Int {
+//        turn off timing for port tests
+        if settings.packetTiming && app.name.contains("port") {
             let timePassed = timeStarted.timeIntervalSinceNow * -1
             if timePassed < packet.timestamp {
                 let sleepTime = UInt32((packet.timestamp - timePassed) * 1000000)
-                print("sleeping for " + String(sleepTime) + " millionths of a second")
                 sentOnTime += 1
                 usleep(sleepTime)
             } else {
@@ -508,7 +541,7 @@ class Replayer {
             try client.write(from: packet.payload)
         } catch let error {
             print("error writing tcp payload \(error)")
-            throw ReplayError.senderError(reason: "Failed to send TCP packet")
+            throw ReplayError.senderError(reason: LocalizedStrings.errors.tcpError)
         }
 
         let responseLength = packet.responseLength!
@@ -529,21 +562,21 @@ class Replayer {
         }
 
         while responseLength > bufferLen {
-                reads += 1
-//                print("reading " + String(describing: bytesToRead) + " bytes")
+            let timePassed = timeStarted.timeIntervalSinceNow * -1
+            if timePassed >= testTimeout {
+                return bufferLen
+            }
+            reads += 1
             do {
                 let bytesRead = try client.read(into: buffer, bufSize: responseLength, truncate: true)
-//                     print(String(describing: packet.responseLength!) + "|" + String(describing:resp.count) + "|" + String(describing: bufferLen))
                 bufferLen += bytesRead
                 sem.wait()
                 self.readBufferLength += bytesRead
                 sem.signal()
                 if responseLength == bufferLen {
-                        print("read all the bytes, took " + String(describing: reads) + " reads")
                     return bufferLen
                 }
             } catch let error {
-                    print("Error getting TCP response, expected " + String(packet.responseLength!) + " bytes")
                 print("Error reading TCP packet \(error)")
                 throw ReplayError.receiveError
             }

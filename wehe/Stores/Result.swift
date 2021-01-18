@@ -22,6 +22,8 @@ class Result: NSObject, NSCoding {
     let server: String?
     let date: Date
     let historyCount: Int
+    let carrier: String
+    let ipVersion: String?
 
     let areaThreshold: Double?
     let ks2pThreshold: Double?
@@ -42,7 +44,7 @@ class Result: NSObject, NSCoding {
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("results")
 
-    init?(blob: JSON, appName: String, server: String?, area: Double?, ks2p: Double?, differentiation: DifferentiationStatus? = nil, reported: Bool = false) {
+    init?(blob: JSON, appName: String, server: String?, carrier: String, ipVersion: String?, area: Double?, ks2p: Double?, differentiation: DifferentiationStatus? = nil, reported: Bool = false) {
         self.blob = blob
         self.appName = appName
 
@@ -59,6 +61,8 @@ class Result: NSObject, NSCoding {
 
         extraString = response["extraString"].string
         self.server = server
+        self.carrier = carrier
+        self.ipVersion = ipVersion
         self.areaThreshold = area
         self.ks2pThreshold = ks2p
         self.reported = reported
@@ -165,6 +169,7 @@ class Result: NSObject, NSCoding {
             aCoder.encode(server, forKey: "server")
         }
 
+        aCoder.encode(carrier, forKey: "carrier")
         aCoder.encode(reported, forKey: "reported")
 
         if let area = self.areaThreshold {
@@ -208,7 +213,15 @@ class Result: NSObject, NSCoding {
             print("Error decoding result app name")
             return nil
         }
-
+        var carrier = "unknown"
+        if aDecoder.containsValue(forKey: "carrier") {
+            if let c = aDecoder.decodeObject(forKey: "carrier") as? String {
+                carrier = c
+            }
+        }
+        
+        let settings = Globals.settings
+        let ipVersion = settings.ipVersion
         let server = aDecoder.decodeObject(forKey: "server") as? String
         let reported = aDecoder.decodeBool(forKey: "reported")
         var area: Double? = aDecoder.decodeDouble(forKey: "area")
@@ -216,7 +229,7 @@ class Result: NSObject, NSCoding {
         area = area == 0 ? nil : area
         ks2p = ks2p == 0 ? nil : ks2p
 
-        self.init(blob: blob, appName: appName, server: server, area: area, ks2p: ks2p, differentiation: differentiation, reported: reported)
+        self.init(blob: blob, appName: appName, server: server, carrier: carrier, ipVersion: ipVersion, area: area, ks2p: ks2p, differentiation: differentiation, reported: reported)
 
     }
 }

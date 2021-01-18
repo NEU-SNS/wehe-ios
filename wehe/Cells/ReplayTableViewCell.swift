@@ -32,6 +32,13 @@ class ReplayTableViewCell: UITableViewCell {
             updateCell()
         }
     }
+    var labelDefaultColor: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor.label
+        } else {
+            return UIColor.black
+        }
+    }
     weak var cellDelegate: (AlertCell & InfoCell)?
 
     override func awakeFromNib() {
@@ -58,8 +65,14 @@ class ReplayTableViewCell: UITableViewCell {
 
     private func beautify() {
         differentiationTextField.text = LocalizedStrings.Generic.differentition
-        actualThroughputTextField.text = LocalizedStrings.PreviousResults.appThroughput
-        potentialThroughputTextField.text = LocalizedStrings.PreviousResults.nonAppThroughput
+        if app?.isPortTest ?? false {
+            // DEBUG
+            actualThroughputTextField.text = LocalizedStrings.App.portThroughput
+            potentialThroughputTextField.text = LocalizedStrings.App.baselineThroughput
+        } else {
+            actualThroughputTextField.text = LocalizedStrings.PreviousResults.appThroughput
+            potentialThroughputTextField.text = LocalizedStrings.PreviousResults.nonAppThroughput
+        }
         reportButton.setTitle(LocalizedStrings.ReplayView.alertArcep, for: .normal)
     }
 
@@ -68,46 +81,20 @@ class ReplayTableViewCell: UITableViewCell {
     }
 
     @IBAction func reportPressed(_ sender: Any) {
-        guard let app = self.app else {
-            return
-        }
-        reportButton.isEnabled = false
+        showArcepPage()
+    }
 
-        let settings = Globals.settings
-        let parameters: Parameters = ["userID": app.userID!, "testID": app.testID!, "historyCount": app.historyCount!, "command": "alertArcep"]
-        let url = Helper.makeURL(ip: settings.serverIP, port: String(settings.resultsPort), api: "Results")
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString)).responseJSON {response in
-            defer {
-                self.reportButton.isEnabled = true
-                self.reportButton.isHidden = true
-                self.arcepIconImageView.isHidden = true
-                self.potentialThroughputTextField.isHidden = false
-                self.potentialThroughputValueTextField.isHidden = false
-                self.actualThroughputTextField.isHidden = false
-                self.actualThroughputValueTextField.isHidden = false
-            }
-            if let result = response.result.value {
-                let json = JSON(result)
-                if json != JSON.null {
-                    if let success = json["success"].bool {
-                        if !success {
-                            print("error")
-                            self.alert(title: LocalizedStrings.Generic.error, message: json["error"].string ?? "")
-                            print(json)
-                        } else {
-                            app.result!.reported = true
-                            self.alert(title: LocalizedStrings.ReplayView.Alerts.success, message: LocalizedStrings.ReplayView.Alerts.reportSent)
-                        }
-                    }
-                }
-            }
+    func showArcepPage() {
+        if let url = URL(string: "https://jalerte.arcep.fr/jalerte/?2") {
+            UIApplication.shared.open(url)
         }
     }
 
     func updateCell() {
+        beautify()
+        updateVisibility()
         updateText()
         updateColors()
-        updateVisibility()
         updateProgress()
     }
 
@@ -120,16 +107,22 @@ class ReplayTableViewCell: UITableViewCell {
     }
 
     private func updateText() {
-        if let nonAppThrougput = app?.nonAppThroughput {
-            potentialThroughputValueTextField.text = String(format: "%.0f Mbps", nonAppThrougput.rounded())
-        }
-
-        if let appThroughput = app?.appThroughput {
-            actualThroughputValueTextField.text = String(format: "%.0f Mbps", appThroughput.rounded())
+        if let nonAppThrougput = app?.nonAppThroughput, let appThroughput = app?.appThroughput {
+            potentialThroughputValueTextField.text = String(format: "%.1f " + LocalizedStrings.Generic.mbps, nonAppThrougput)
+            actualThroughputValueTextField.text = String(format: "%.1f " + LocalizedStrings.Generic.mbps, appThroughput)
+            if appThroughput > nonAppThrougput {
+                app?.prioritized = true
+            } else {
+                app?.prioritized = false
+            }
         }
 
         iconImageView.image = UIImage(named: app?.icon ?? "placeholder")
-        nameTextField.text = app?.name
+        var appname = app?.name
+        if Helper.isFrenchLocale() {
+            appname = appname?.replacingOccurrences(of: "MB)", with: "Mo)")
+        }
+        nameTextField.text = appname
         statusTextField.text = app?.getStatusString()
 
         guard let differentiation = app?.differentiation else {
@@ -138,75 +131,136 @@ class ReplayTableViewCell: UITableViewCell {
 
         switch differentiation {
         case .noDifferentiation:
-            statusTextField.text = LocalizedStrings.ReplayView.noDifferentiation
+            differentiationTextField.text = LocalizedStrings.Generic.noDifferentition
         case .inconclusive:
-            if app?.status == .receivedResults {
-                statusTextField.text = LocalizedStrings.ReplayView.resultInconclusive
+            if app?.status == .error && app?.errorString == LocalizedStrings.errors.connectionBlockError {
+                differentiationTextField.text = LocalizedStrings.Generic.inconclusiveNoRerun
+            } else {
+                differentiationTextField.text = LocalizedStrings.Generic.inconclusive
             }
-        default:
-            break
+        case .differentiation:
+            differentiationTextField.text = LocalizedStrings.Generic.differentition
         }
     }
 
     private func updateColors() {
         guard let differentiation = app?.differentiation else {
-            statusTextField.textColor = UIColor.black
+            statusTextField.textColor = labelDefaultColor
             return
         }
 
         switch differentiation {
-        case .noDifferentiation: statusTextField.textColor = Settings.noDifferentiationColor
+        case .noDifferentiation: differentiationTextField.textColor = Settings.noDifferentiationColor
         case .inconclusive:
-            if app?.status == .receivedResults {
-                statusTextField.textColor = UIColor.orange
-            }
-        default:
-            if app?.status == .error {
-                statusTextField.textColor = UIColor.red
-            } else {
-                statusTextField.textColor = UIColor.black
-            }
+            differentiationTextField.textColor = UIColor.orange
+        case .differentiation:differentiationTextField.textColor = UIColor.red
         }
     }
 
     private func updateVisibility() {
+        // control progress bar
         if app?.differentiation != nil || app?.status == .willRerun || app?.status == .waitingForResults {
             progressBar.isHidden = true
         } else {
             progressBar.isHidden = false
-        }
-
-        if let differentiation = app?.differentiation, differentiation == .differentiation {
-            if !Helper.isFrenchLocale() || app?.result?.reported ?? false {
-                reportButton.isHidden = true
-                arcepIconImageView.isHidden = true
-                potentialThroughputTextField.isHidden = false
-                potentialThroughputValueTextField.isHidden = false
-                actualThroughputTextField.isHidden = false
-                actualThroughputValueTextField.isHidden = false
-                statusTextField.isHidden = true
-                differentiationTextField.isHidden = false
-            } else {
-                statusTextField.isHidden = true
-                differentiationTextField.isHidden = false
-                reportButton.isHidden = false
-                arcepIconImageView.isHidden = false
-            }
-            infoImageView.isHidden = false
-        } else {
+            statusTextField.isHidden = false
             infoImageView.isHidden = true
             reportButton.isHidden = true
             arcepIconImageView.isHidden = true
+            actualThroughputTextField.isHidden = true
+            actualThroughputValueTextField.isHidden = true
+            potentialThroughputTextField.isHidden = true
+            potentialThroughputValueTextField.isHidden = true
+            differentiationTextField.isHidden = true
+        }
+
+        if app?.status == .receivedResults { // test finished, received results
+            if app?.differentiation == .differentiation {// detected differentiation
+                if Helper.isFrenchLocale() { // French version, show Arcep button
+                    reportButton.isHidden = false
+                    arcepIconImageView.isHidden = false
+                } else { // non French version, no arcep button
+                    reportButton.isHidden = true
+                    arcepIconImageView.isHidden = true
+                }
+                infoImageView.isHidden = false // show more info button
+            } else if app?.differentiation == .noDifferentiation { // no diff
+                infoImageView.isHidden = true
+                reportButton.isHidden = true
+                arcepIconImageView.isHidden = true
+            } else { // inconclusive
+                infoImageView.isHidden = true
+                reportButton.isHidden = true
+                arcepIconImageView.isHidden = true
+            }
+            actualThroughputTextField.isHidden = false
+            actualThroughputValueTextField.isHidden = false
+            potentialThroughputTextField.isHidden = false
+            potentialThroughputValueTextField.isHidden = false
+            statusTextField.isHidden = true
+            differentiationTextField.isHidden = false
+        } else if app?.status == .error && app?.errorString == LocalizedStrings.errors.connectionBlockError {
+            // when failed to connect sockets/the test is blocked
+            statusTextField.isHidden = true
+            progressBar.isHidden = true
+            app?.differentiation = .differentiation
+            infoImageView.isHidden = false // show more info button
+            differentiationTextField.isHidden = false
+            actualThroughputTextField.isHidden = true
+            actualThroughputValueTextField.isHidden = true
+            potentialThroughputTextField.isHidden = true
+            potentialThroughputValueTextField.isHidden = true
+            if Helper.isFrenchLocale() { // French version, show Arcep button
+                reportButton.isHidden = false
+                arcepIconImageView.isHidden = false
+            } else { // non French version, no arcep button
+                reportButton.isHidden = true
+                arcepIconImageView.isHidden = true
+            }
+        } else if app?.status == .error && app?.errorString == LocalizedStrings.ReplayRunner.errorReceivingPackets {
+            // when failed to receive packets after establishing the connection
+            if app?.isPortTest ?? false {
+                app?.differentiation = .differentiation
+                if Helper.isFrenchLocale() { // French version, show Arcep button
+                    reportButton.isHidden = false
+                    arcepIconImageView.isHidden = false
+                } else { // non French version, no arcep button
+                    reportButton.isHidden = true
+                    arcepIconImageView.isHidden = true
+                }
+            } else {
+                app?.differentiation = .inconclusive
+            }
+            infoImageView.isHidden = false // show more info button
+            differentiationTextField.isHidden = false
+            actualThroughputTextField.isHidden = true
+            actualThroughputValueTextField.isHidden = true
+            potentialThroughputTextField.isHidden = true
+            potentialThroughputValueTextField.isHidden = true
+            statusTextField.isHidden = true
+            progressBar.isHidden = true
+        } else if app?.status == .error { // other errors
+            statusTextField.isHidden = true
+            progressBar.isHidden = true
+            app?.differentiation = .inconclusive
+            infoImageView.isHidden = false // show more info button
+            actualThroughputTextField.isHidden = true
+            actualThroughputValueTextField.isHidden = true
+            potentialThroughputTextField.isHidden = true
+            potentialThroughputValueTextField.isHidden = true
+            differentiationTextField.isHidden = false
+            reportButton.isHidden = true
+            arcepIconImageView.isHidden = true
+        } else { // test in progress
+            infoImageView.isHidden = true
             statusTextField.isHidden = false
             differentiationTextField.isHidden = true
             potentialThroughputTextField.isHidden = true
             potentialThroughputValueTextField.isHidden = true
             actualThroughputTextField.isHidden = true
             actualThroughputValueTextField.isHidden = true
-        }
-
-        if app?.status == .error {
-            progressBar.isHidden = true
+            reportButton.isHidden = true
+            arcepIconImageView.isHidden = true
         }
     }
 

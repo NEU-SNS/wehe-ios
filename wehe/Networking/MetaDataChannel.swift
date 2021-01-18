@@ -20,8 +20,8 @@ class MetaDataChannel {
     var isConnected = false
 
     static let objLength = 10
-    static let connectionTimeout = 60 * 1000
-    static let timeout = 2 * 60 * 1000
+    static let connectionTimeout = 2 * 1000
+    static let timeout = 2 * 1000
 
     init?(address: String, port: Int, family: Socket.ProtocolFamily) {
         self.address = address

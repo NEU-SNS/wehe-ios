@@ -1,105 +1,473 @@
 {
     "apps": [
-             {
-             "name" : "Youtube",
-             "size" : "16",
-             "time" : 8,
-             "icon" : "youtube",
-             "replayFile" : "Youtube_12122018.pcap_client_all",
-             "randomReplayFile" : "YoutubeRandom_12122018.pcap_client_all"
-             },
-             {
-             "name" : "Amazon",
-             "size" : "13",
-             "time" : 28,
-             "icon" : "amazon",
-             "replayFile" : "Amazon_01042019.pcap_client_all",
-             "randomReplayFile" : "AmazonRandom_01042019.pcap_client_all"
-             },
-             {
-             "name":"NBCSports",
-             "size": "19",
-             "time": 24,
-             "icon":"nbcsports",
-             "replayFile":"NBCSports_01042019.pcap_client_all",
-             "randomReplayFile":"NBCSportsRandom_01042019.pcap_client_all"
-             },
-             {
-             "name":"Netflix",
-             "size": "15",
-             "time": 30,
-             "icon":"netflix",
-             "replayFile":"Netflix_12122018.pcap_client_all",
-             "randomReplayFile":"NetflixRandom_12122018.pcap_client_all"
-             },
-             {
-             "name":"Skype",
-             "size": "14",
-             "time": 40,
-             "icon":"skype",
-             "replayFile":"Skype_12122018.pcap_client_all",
-             "randomReplayFile":"SkypeRandom_12122018.pcap_client_all"
-             },
-             {
-             "name":"Spotify",
-             "size": "8",
-             "time": 15,
-             "icon":"spotify",
-             "replayFile":"Spotify_01042019.pcap_client_all",
-             "randomReplayFile":"SpotifyRandom_01042019.pcap_client_all"
-             },
-             {
-             "name":"Vimeo",
-             "size": "18",
-             "time": 15,
-             "icon":"vimeo",
-             "replayFile":"Vimeo_12122018.pcap_client_all",
-             "randomReplayFile":"VimeoRandom_12122018.pcap_client_all"
-             },
-             {
-                 "name":"AppleMusic",
-                 "size": "6",
-                 "time": 2,
-                 "icon":"applemusic",
-                 "replayFile":"AppleMusic_04112019.pcap_client_all",
-                 "randomReplayFile":"AppleMusic_04112019.pcap_client_all",
-                 "hidden": true
-             },
-             {
-                 "name":"Facebook",
-                 "size": "14",
-                 "time": 23,
-                 "icon":"facebook",
-                 "replayFile":"FacebookVideo_04112019.pcap_client_all",
-                 "randomReplayFile":"FacebookVideoRandom_04112019.pcap_client_all",
-                 "hidden": true
-             },
-             {
-                 "name":"Hulu",
-                 "size": "14",
-                 "time": 16,
-                 "icon":"hulu",
-                 "replayFile":"Hulu_04112019.pcap_client_all",
-                 "randomReplayFile":"HuluRandom_04112019.pcap_client_all",
-                 "hidden": true
-             },
-             {
-                 "name":"Twitch",
-                 "size": "13",
-                 "time": 14,
-                 "icon":"twitch",
-                 "replayFile":"Twitch_04112019.pcap_client_all",
-                 "randomReplayFile":"TwitchRandom_04112019.pcap_client_all",
-                 "hidden": true
-             },
-             {
-                 "name":"WhatsApp",
-                 "size": "7",
-                 "time": 29,
-                 "icon":"whatsapp",
-                 "replayFile":"WhatsApp_04112019.pcap_client_all",
-                 "randomReplayFile":"WhatsApp_04112019.pcap_client_all",
-                 "hidden": true
-             },
-             ]
+        {
+            "name" : "Prime Video",
+            "size" : "14",
+            "time" : 7,
+            "icon" : "amazon",
+            "replayFile" : "Amazon_11252020.pcap_client_all",
+            "randomReplayFile" : "AmazonRandom_11252020.pcap_client_all",
+            "appType" : "video"
+        },
+        {
+            "name":"Apple Music",
+            "size": "6",
+            "time": 2,
+            "icon":"applemusic",
+            "replayFile":"AppleMusic_04112019.pcap_client_all",
+            "randomReplayFile":"AppleMusicRandom_04112019.pcap_client_all",
+            "appType" : "music"
+        },
+        {
+            "name":"Dailymotion",
+            "size": "14",
+            "time": 3,
+            "icon":"dailymotion",
+            "replayFile":"Dailymotion_09012019.pcap_client_all",
+            "randomReplayFile":"DailymotionRandom_09012019.pcap_client_all",
+            "frenchOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"Deezer",
+            "size": "7",
+            "time": 1,
+            "icon":"deezer",
+            "replayFile":"Deezer_09012019.pcap_client_all",
+            "randomReplayFile":"DeezerRandom_09012019.pcap_client_all",
+            "frenchOnly": true,
+            "appType" : "music"
+        },
+        {
+            "name" : "Disney+",
+            "size" : "16",
+            "time" : 4,
+            "icon" : "disneyplus",
+            "replayFile" : "DisneyPlus_05082020.pcap_client_all",
+            "randomReplayFile" : "DisneyPlusRandom_05082020.pcap_client_all",
+            "appType" : "video"
+        },
+        {
+            "name":"Facebook Video",
+            "size": "14",
+            "time": 23,
+            "icon":"facebook",
+            "replayFile":"FacebookVideo_04112019.pcap_client_all",
+            "randomReplayFile":"FacebookVideoRandom_04112019.pcap_client_all",
+            "appType" : "video"
+        },
+        {
+            "name":"Google Meet",
+            "size": "7",
+            "time": 57,
+            "icon":"meet",
+            "replayFile":"GoogleMeet_04282020.pcap_client_all",
+            "randomReplayFile":"GoogleMeetRandom_04282020.pcap_client_all",
+            "frenchOnly": false,
+            "appType" : "videoconferencing"
+        },
+        {
+            "name":"Hulu",
+            "size": "14",
+            "time": 16,
+            "icon":"hulu",
+            "replayFile":"Hulu_04112019.pcap_client_all",
+            "randomReplayFile":"HuluRandom_04112019.pcap_client_all",
+            "englishOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"Microsoft Teams",
+            "size": "10",
+            "time": 51,
+            "icon":"teams",
+            "replayFile":"MicrosoftTeam_04282020.pcap_client_all",
+            "randomReplayFile":"MicrosoftTeam_04282020.pcap_client_all",
+            "frenchOnly": false,
+            "appType" : "videoconferencing"
+        },
+        {
+            "name":"MolotovTV",
+            "size": "13",
+            "time": 2,
+            "icon":"molotovtv",
+            "replayFile":"Molotovtv_08012019.pcap_client_all",
+            "randomReplayFile":"MolotovtvRandom_08012019.pcap_client_all",
+            "frenchOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"MyCanal",
+            "size": "11",
+            "time": 2,
+            "icon":"mycanal",
+            "replayFile":"Mycanal_10012019.pcap_client_all",
+            "randomReplayFile":"MycanalRandom_10012019.pcap_client_all",
+            "frenchOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"NBCSports",
+            "size": "19",
+            "time": 24,
+            "icon":"nbcsports",
+            "replayFile":"NBCSports_01042019.pcap_client_all",
+            "randomReplayFile":"NBCSportsRandom_01042019.pcap_client_all",
+            "englishOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"Netflix",
+            "size": "15",
+            "time": 30,
+            "icon":"netflix",
+            "replayFile":"Netflix_12122018.pcap_client_all",
+            "randomReplayFile":"NetflixRandom_12122018.pcap_client_all",
+            "appType" : "video"
+        },
+        {
+            "name":"OCS",
+            "size": "13",
+            "time": 22,
+            "icon":"ocs",
+            "replayFile":"OCS_08012019.pcap_client_all",
+            "randomReplayFile":"OCSRandom_08012019.pcap_client_all",
+            "frenchOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"Salto",
+            "size": "12",
+            "time": 16,
+            "icon":"salto",
+            "replayFile":"Salto_11252020.pcap_client_all",
+            "randomReplayFile":"SaltoRandom_11252020.pcap_client_all",
+            "frenchOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"SFRPlay",
+            "size": "14",
+            "time": 30,
+            "icon":"sfrplay",
+            "replayFile":"Sfrplay_08012019.pcap_client_all",
+            "randomReplayFile":"SfrplayRandom_08012019.pcap_client_all",
+            "frenchOnly": true,
+            "appType" : "video"
+        },
+        {
+            "name":"Skype",
+            "size": "14",
+            "time": 40,
+            "icon":"skype",
+            "replayFile":"Skype_12122018.pcap_client_all",
+            "randomReplayFile":"SkypeRandom_12122018.pcap_client_all",
+            "appType" : "videoconferencing"
+        },
+        {
+            "name":"Spotify",
+            "size": "8",
+            "time": 15,
+            "icon":"spotify",
+            "replayFile":"Spotify_01042019.pcap_client_all",
+            "randomReplayFile":"SpotifyRandom_01042019.pcap_client_all",
+            "appType" : "music"
+        },
+        {
+            "name":"Twitch",
+            "size": "13",
+            "time": 14,
+            "icon":"twitch",
+            "replayFile":"Twitch_04112019.pcap_client_all",
+            "randomReplayFile":"TwitchRandom_04112019.pcap_client_all",
+            "appType" : "video"
+        },
+        {
+            "name":"Vimeo",
+            "size": "18",
+            "time": 15,
+            "icon":"vimeo",
+            "replayFile":"Vimeo_12122018.pcap_client_all",
+            "randomReplayFile":"VimeoRandom_12122018.pcap_client_all",
+            "appType" : "video"
+        },
+        {
+            "name":"Webex",
+            "size": "5",
+            "time": 61,
+            "icon":"webex",
+            "replayFile":"Webex_04282020.pcap_client_all",
+            "randomReplayFile":"WebexRandom_04282020.pcap_client_all",
+            "frenchOnly": false,
+            "appType" : "videoconferencing"
+        },
+        {
+            "name":"WhatsApp",
+            "size": "7",
+            "time": 29,
+            "icon":"whatsapp",
+            "replayFile":"WhatsApp_04112019.pcap_client_all",
+            "randomReplayFile":"WhatsApp_04112019.pcap_client_all",
+            "appType" : "videoconferencing"
+        },
+        {
+            "name" : "YouTube",
+            "size" : "16",
+            "time" : 8,
+            "icon" : "youtube",
+            "replayFile" : "Youtube_12122018.pcap_client_all",
+            "randomReplayFile" : "YoutubeRandom_12122018.pcap_client_all",
+            "appType" : "video"
+        },
+        {
+            "name":"Zoom",
+            "size": "15",
+            "time": 61,
+            "icon":"zoom",
+            "replayFile":"Zoom_04282020.pcap_client_all",
+            "randomReplayFile":"ZoomRandom_04282020.pcap_client_all",
+            "frenchOnly": false,
+            "appType" : "videoconferencing"
+        },
+        {
+            "name":"Port 80 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "80",
+            "replayFile":"port_80.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 80 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "80",
+            "replayFile":"port_80_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 81 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "81",
+            "replayFile":"port_81.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 81 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "81",
+            "replayFile":"port_81_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 465 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "465",
+            "replayFile":"port_465.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 465 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "465",
+            "replayFile":"port_465_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 853 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "853",
+            "replayFile":"port_853.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 853 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "853",
+            "replayFile":"port_853_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 993 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "993",
+            "replayFile":"port_993.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 993 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "993",
+            "replayFile":"port_993_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 995 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "995",
+            "replayFile":"port_995.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 995 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "995",
+            "replayFile":"port_995_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 1194 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "1194",
+            "replayFile":"port_1194.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 1194 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "1194",
+            "replayFile":"port_1194_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 1701 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "1701",
+            "replayFile":"port_1701.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 1701 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "1701",
+            "replayFile":"port_1701_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 5061 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "5061",
+            "replayFile":"port_5061.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 5061 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "5061",
+            "replayFile":"port_5061_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 6881 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "6881",
+            "replayFile":"port_6881.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 6881 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "6881",
+            "replayFile":"port_6881_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 8080 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "8080",
+            "replayFile":"port_8080.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 8080 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "8080",
+            "replayFile":"port_8080_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        },
+        {
+            "name":"Port 8443 (10 MB)",
+            "size": "10",
+            "time": 2,
+            "icon": "8443",
+            "replayFile":"port_8443.pcap_client_all",
+            "randomReplayFile": "port_443.pcap_client_all",
+            "portTest": true,
+            "largeTest": false
+        },
+        {
+            "name":"Port 8443 (50 MB)",
+            "size": "50",
+            "time": 10,
+            "icon": "8443",
+            "replayFile":"port_8443_large.pcap_client_all",
+            "randomReplayFile": "port_443_large.pcap_client_all",
+            "portTest": true,
+            "largeTest": true
+        }
+    ]
 }

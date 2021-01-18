@@ -28,6 +28,7 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var apps = [App]()
     var results = [Result]()
     var dpiApp: App?
+    var portTest = false
     var status: GlobalStatus = .waitingToStart {
         didSet {
             if status == .done {
@@ -67,7 +68,7 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     // change this once the number of replays is no longer constant
-    let replaysPerTest = 2
+    var replaysPerTest = 2
 
     private weak var timer: Timer?
     private let idleTimeOut = 10.0
@@ -75,6 +76,9 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         settings = Globals.settings
+        if portTest {
+            replaysPerTest = 1
+        }
 
         beautify()
 
@@ -135,14 +139,32 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBAction func startButtonPressed(_ sender: Any) {
         if status == .waitingToStart || status == .done {
+            cancelButton.title = LocalizedStrings.Generic.cancel
             startPressed()
         }
-//        } else {
-//            cancelPressed()
-//        }
     }
     @IBAction func cancelTap(_ sender: Any) {
         cancelPressed()
+    }
+    
+    private func hasInconclusiveResults() -> Bool {
+        var hasInconclusiveReplays = false
+        for app in apps {
+            if app.differentiation != nil && app.differentiation == .inconclusive {
+                hasInconclusiveReplays = true
+                }
+            }
+        return hasInconclusiveReplays
+    }
+    
+    private func hasDifferentiatedResults() -> Bool {
+        var hasDifferentiatedReplays = false
+        for app in apps {
+            if app.differentiation != nil && app.differentiation == .differentiation {
+                    hasDifferentiatedReplays = true
+            }
+        }
+        return hasDifferentiatedReplays
     }
 
     private func startPressed() {
@@ -155,46 +177,38 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
 
         var noReplaysWaiting = true
-        var hasReplaysWithErrors = false
         var hasInconclusiveReplays = false
+        var hasDifferentiatedReplays = false
         for app in apps {
             if app.status != .receivedResults && app.status != .error {
                 noReplaysWaiting = false
             }
-
-            if app.status == .error {
-                hasReplaysWithErrors = true
-            }
-
-            if app.differentiation != nil && app.differentiation == .inconclusive {
-                hasInconclusiveReplays = true
-            }
         }
-
+        
+        hasInconclusiveReplays = hasInconclusiveResults()
+        hasDifferentiatedReplays = hasDifferentiatedResults()
+        
         if noReplaysWaiting {
             let alertMessage = LocalizedStrings.ReplayView.Alerts.wouldYouLikeToRerun
             let alertController = UIAlertController(title: LocalizedStrings.ReplayView.Alerts.reRunTestHuh, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
-
-            alertController.addAction(UIAlertAction(title: LocalizedStrings.ReplayView.Alerts.reRunAllTestsAction, style: UIAlertAction.Style.default, handler: {(_) -> Void in
-                self.cleanUpAndRestart()
-            }))
-
-            if hasReplaysWithErrors {
-                alertController.addAction(UIAlertAction(title: LocalizedStrings.ReplayView.Alerts.reRunTestsWithErrorsAction, style: UIAlertAction.Style.default, handler: {(_) -> Void in
-                    self.cleanUpAndRestart(errorsOnly: true)
-                }))
-            }
 
             if hasInconclusiveReplays {
                 alertController.addAction(UIAlertAction(title: LocalizedStrings.ReplayView.Alerts.reRunTestsWithInconclusiveAction, style: UIAlertAction.Style.default, handler: {(_) -> Void in
                     self.cleanUpAndRestart(inconclusiveOnly: true)
                 }))
+                UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).numberOfLines = 0
+            }
+            
+            if hasDifferentiatedReplays {
+                alertController.addAction(UIAlertAction(title: LocalizedStrings.ReplayView.Alerts.reRunDifferentiatedAction, style: UIAlertAction.Style.default, handler: {(_) -> Void in
+                    self.cleanUpAndRestart(differentiatedOnly: true)
+                }))
+                UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).numberOfLines = 0
             }
 
             alertController.addAction(UIAlertAction(title: LocalizedStrings.Generic.cancel, style: UIAlertAction.Style.default, handler: nil))
 
             self.present(alertController, animated: true, completion: nil)
-
         }
     }
 
@@ -275,8 +289,6 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
             results.removeFirst(results.count + 1 - maxResults)
         }
 
-        results.append(result)
-
         Helper.runOnUIThread {
             self.saveResults()
         }
@@ -297,6 +309,7 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if replayQueue.count == 0 && !replayRunning && !othersWaiting {
             status = .done
         }
+        //A confirmation replay is needed when the first test detects differentiation
 
         if settings!.confirmationReplays && app.differentiation! != .noDifferentiation && app.timesRan == 1 {
             replayQueue.append(apps.firstIndex(of: app)!)
@@ -311,6 +324,9 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.status = .confirmationReplays
                 self.nextReplay()
             }
+        } else {
+            // append results only for non-confirmation replays
+            results.append(result)
         }
 
     }
@@ -359,12 +375,22 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
             startButton.isHidden = true
         case .done:
             updateOverallProgress()
+            //check whether there is inconclusive or differentiated tests
+            var hasInconclusiveReplays = false
+            var hasDifferentiatedReplays = false
+            hasInconclusiveReplays = hasDifferentiatedResults()
+            hasDifferentiatedReplays = hasInconclusiveResults()
             startButton.setTitle(LocalizedStrings.ReplayView.reRun, for: .normal)
-            startButton.isHidden = false
+            if hasInconclusiveReplays || hasDifferentiatedReplays {
+                startButton.isHidden = false
+            } else {
+                startButton.isHidden = true
+            }
+            cancelButton.title = LocalizedStrings.Generic.testDone
         }
     }
 
-    private func cleanUpAndRestart(errorsOnly: Bool = false, inconclusiveOnly: Bool = false) {
+    private func cleanUpAndRestart(errorsOnly: Bool = false, inconclusiveOnly: Bool = false, differentiatedOnly: Bool = false) {
 
         var queue = [Int]()
 
@@ -374,6 +400,10 @@ class ReplayViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
 
             if inconclusiveOnly && app.differentiation != .inconclusive {
+                continue
+            }
+            
+            if differentiatedOnly && app.differentiation != .differentiation {
                 continue
             }
 

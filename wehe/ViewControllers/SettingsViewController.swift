@@ -79,6 +79,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         if let settings = settings {
             settings.server = serverLabel.text ?? Settings.DefaultSettings.server
             settings.serverIP = Helper.dnsLookup(hostname: settings.server) ?? settings.server
+            print("server ip", settings.serverIP)
             settings.confirmationReplays = confirmationReplaysSwitch.isOn
 
             settings.areaThreshold = (Double(areaTestTextField.text!) ?? Settings.DefaultSettings.areaThreshold * 100) / 100
@@ -95,8 +96,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         serverLabel.text = settings!.server
         confirmationReplaysSwitch.isOn = settings!.confirmationReplays
-        areaTestTextField.text = String(Int(settings!.areaThreshold * 100))
-        pValueTextField.text = String(Int(settings!.pValueThreshold * 100))
+        areaTestTextField.text = String(Double(settings!.areaThreshold * 100))
+        pValueTextField.text = String(Double(settings!.pValueThreshold * 100))
         defaultSettingsSwitch.isOn = settings!.defaultThresholds
 
         defaultSwitchFlipped()

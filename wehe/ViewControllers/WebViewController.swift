@@ -13,13 +13,13 @@ class WebViewController: UIViewController {
     @IBOutlet weak var mainWebView: UIWebView!
     @IBOutlet weak var backButton: UIBarButtonItem!
 
-    var webUrl = "http://dd.meddle.mobi/globalStats.html"
+    var webUrl = "http://wehe.meddle.mobi/globalStats.html"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if Helper.isFrenchLocale() {
-            webUrl = "https://dd.meddle.mobi/StatsFrance.html"
+            webUrl = "https://wehe.meddle.mobi/StatsFrance.html"
         }
 
         beautify()

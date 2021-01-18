@@ -22,6 +22,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Annuler";
 
+"Done" = "terminés";
+
 /* No comment provided by engineer. */
 "Consent Form" = "Formulaire de consentement";
 
@@ -49,8 +51,6 @@
 /* No comment provided by engineer. */
 "Error reading replay files" = "Erreur lors de la lecture du replay";
 
-/* No comment provided by engineer. */
-"Error recieving packets from server" = "Erreur lors de la réception des paquets du serveur";
 
 /* No comment provided by engineer. */
 "Finished running tests" = "Tests terminés";
@@ -112,6 +112,9 @@
 "Rerun All Tests" = "Relancer tous les tests";
 
 /* No comment provided by engineer. */
+"Rerun Tests with detected differentiation" = "Relancer tous les tests ayant détecté une différenciation";
+
+/* No comment provided by engineer. */
 "Rerun Inconclusive Tests" = "Relancer tous les tests non concluants";
 
 /* No comment provided by engineer. */
@@ -130,13 +133,16 @@
 "Results inconclusive" = "Resultats non concluants";
 
 /* No comment provided by engineer. */
-"Results inconclusive, please try running the test again" = "Les résultats ne sont pas concluants. Veuillez relancer le test.";
+"Results inconclusive (please try running the test again)" = "Résultats non concluants (veuillez relancer le test)";
 
 /* No comment provided by engineer. */
 "Results inconclusive, re-running test" = "Resultats non concluants, le test a été relancé";
 
 /* No comment provided by engineer. */
-"Run Tests" = "Lancer les tests";
+"Run differentiation tests" = "Test de différenciation";
+
+/* No comment provided by engineer. */
+"Run tests" = "Lancer les tests";
 
 /* No comment provided by engineer. */
 "Run multiple tests to confirm differentiation" = "Lancer des tests additionnels pour confirmer les résultats";
@@ -151,6 +157,12 @@
 "Running the randomized test" = "Exécution du test chiffré";
 
 /* No comment provided by engineer. */
+"Running the port test" = "Test du port en cours ";
+
+/* No comment provided by engineer. */
+"Running the baseline port 443 test" = "Test du port de référence en cours ";
+
+/* No comment provided by engineer. */
 "Save" = "Enregistrer";
 
 /* No comment provided by engineer. */
@@ -163,7 +175,13 @@
 "Settings" = "Réglages";
 
 /* No comment provided by engineer. */
-"Size" = "Volume";
+"Total size" = "Taille totale";
+
+/* No comment provided by engineer. */
+"MB per port test)" = "Mo par port testé)";
+
+/* No comment provided by engineer. */
+"File size" = "Taille du fichier";
 
 /* No comment provided by engineer. */
 "Start" = "Commencer";
@@ -211,7 +229,7 @@
 "No differentiation detected" = "Pas de différenciation détectée";
 
 /* No comment provided by engineer. */
-"results inconclusive" = "résultats non concluants";
+"Results inconclusive" = "Résultats non concluants";
 
 /* No comment provided by engineer. */
 "running additional test(s)" = "exécution de tests supplémentaires";
@@ -220,6 +238,8 @@
 "your mobile carrier" = "votre opérateur";
 
 "Server" = "Serveur";
+
+"Carrier" = "Opérateur";
 
 "KS2 P Value Threshold" = "Seuil du test KS2 P-value";
 
@@ -269,10 +289,38 @@
 "Previous Result:\n" = "Résultat précédent:\n";
 
 /* No comment provided by engineer. */
-"360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps" = "360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps";
+"It seems that Wehe could not receive any result. This might be caused by your ISP blocking this test or an equipment on your local network or the server side." = "Il semblerait que le test Wehe n'ait pas abouti. Si ce résultat persiste, il pourrait provenir du réseau de votre opérateur ou de tout autre élément de la chaîne d'acheminement du trafic.";
+
+/* No comment provided by engineer. */
+"This test might be blocked. This blocking might come from your ISP or an equipment on your local network or the server side." = "Le trafic pourrait être bloqué. Si ce blocage était avéré, il pourrait provenir du réseau de votre opérateur ou de tout autre élément de la chaîne d'acheminement du trafic.";
+
+/* No comment provided by engineer. */
+"This test might be throttled. This throttling might come from your ISP or an equipment on your local network or the server side. \n\nBitrate Info\n360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps\n" = "Le trafic pourrait être bridé. Si ce bridage était avéré, il pourrait provenir du réseau de votre opérateur ou de tout autre élément de la chaîne d'acheminement du trafic. \n\nInfo sur le débit\n360p:  0.4-1.0 Mbit/s\n480p:  0.5-2.0 Mbit/s\n720p:  1.5-4.0 Mbit/s\n1080p: 3.0-6.0 Mbit/s\n";
+
+/* No comment provided by engineer. */
+"Bitrate Info\n360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps\n" = "Info sur le débit\n360p:  0.4-1.0 Mbit/s\n480p:  0.5-2.0 Mbit/s\n720p:  1.5-4.0 Mbit/s\n1080p: 3.0-6.0 Mbit/s\n";
+
+/* No comment provided by engineer. */
+"This test might be prioritised. This prioritization might come from your ISP, an equipment on your local network or the server side." = "Le trafic pourrait être priorisé. Si cette priorisation était avérée, elle pourrait provenir du réseau de votre opérateur ou de tout autre élément de la chaîne d'acheminement du trafic.";
+
+/* No comment provided by engineer. */
+"HTTPS traffic on this port might be blocked. This blocking might come from your ISP or an equipment on your local network or the server side." = "Le trafic https sur ce port pourrait être bloqué. Si ce blocage était avéré, il pourrait provenir du réseau de votre opérateur ou de tout autre élément de la chaîne d'acheminement du trafic.";
+
+/* No comment provided by engineer. */
+"HTTPS traffic on this port might be throttled. This throttling might come from your ISP or an equipment on your local network or the server side. \n\nBitrate Info\n360p:  0.4-1.0 Mbps\n480p:  0.5-2.0 Mbps\n720p:  1.5-4.0 Mbps\n1080p: 3.0-6.0 Mbps\n" = "Le trafic https sur ce port pourrait être bridé. Si ce bridage était avéré, il pourrait provenir du réseau de votre opérateur ou de tout autre élément de la chaîne d'acheminement du trafic.\n\nInfo sur le débit\n360p:  0.4-1.0 Mbit/s\n480p:  0.5-2.0 Mbit/s\n720p:  1.5-4.0 Mbit/s\n1080p: 3.0-6.0 Mbit/s\n";
+
+/* No comment provided by engineer. */
+"HTTPS traffic on this port might be prioritised. This prioritization might come from your ISP, an equipment on your local network or the server side." = "Le trafic https sur ce port pourrait être priorisé. Si cette priorisation était avérée, elle pourrait provenir du réseau de votre opérateur ou de tout autre élément de la chaîne d'acheminement du trafic.";
+
 
 /* No comment provided by engineer. */
 "Bitrate Info" = "Info sur le débit ";
+
+/* No comment provided by engineer. */
+"Mbps" = "Mbit/s";
+
+/* No comment provided by engineer. */
+"MB" = "Mo";
 
 /* No comment provided by engineer. */
 "DPI Analysis Info" = "Informations sur l’analyse du DPI";
@@ -335,11 +383,11 @@
 
 "Alert Arcep" = "J’alerte l’Arcep !";
 
-"AboutText" = "En effectuant des tests avec Wehe, vous contribuez à l’identification de potentielles entraves à la neutralité du net. Vous participez au projet de recherche de la Northeastern University piloté par David Choffnes et épaulez l’Arcep (l’Autorité de Régulation des Télécommunications Électroniques et des Postes) dans l’une de ses missions clé. Un résultat individuel indiquant qu’une différenciation a été détectée ne suffit pas à caractériser un manquement au règlement (UE) 2015/2120 relatif à l’Internet Ouvert.  L’application Wehe n’est pas le mécanisme de surveillance agréé par l’autorité règlementaire nationale évoqué à l’article 4.4 dudit règlement.";
+"AboutText" = "En effectuant des tests avec Wehe, vous contribuez à l’identification de potentielles entraves à la neutralité du net. Vous participez au projet de recherche de la Northeastern University piloté par David Choffnes et épaulez l’Arcep (l'Autorité de régulation des communications électroniques, des postes et de la distribution de la presse) clé. Un résultat individuel indiquant qu’une différenciation a été détectée ne suffit pas à caractériser un manquement au règlement (UE) 2015/2120 relatif à l’Internet Ouvert.  L’application Wehe n’est pas le mécanisme de surveillance agréé par l’autorité règlementaire nationale évoqué à l’article 4.4 dudit règlement.";
 
 "How it Works" = "Fonctionnement";
 
-"FunctionalityText" = "Wehe analyse le trafic généré via l’application pour déterminer si l’opérateur bride ou priorise certains services (YouTube, Netflix, Spotify etc.). Le test s’effectue en deux étapes. Wehe simule une utilisation du service afin que l’opérateur traite le trafic généré comme il traiterait le trafic réel issu de ce service. Puis Wehe rejoue le même trafic en remplaçant le contenu en clair (nom de l’application et des serveurs utilisés, etc.) par du contenu chiffré, invisible pour l’opérateur. L’application compare ensuite les débits mesurés à ces deux étapes, répète à nouveau le test pour éliminer au maximum l’impact de l’état conjoncturel du réseau, et indique si une différence de traitement a été constatée.\n\nSi tel est le cas, Wehe offre la possibilité d’effectuer des tests supplémentaires pour repérer les règles de Deep Packet Inspection (DPI) qui pourraient avoir été mises en place par l’opérateur afin de détecter les flux à brider ou prioriser. Attention, ces tests consomment un volume de données significatif et peuvent durer plusieurs minutes.\n\nMentions légales\n\nPour le fonctionnement de l’application Wehe, la Northeastern University collecte votre géolocalisation uniquement si vous avez accepté de la partager ainsi que votre adresse IP qui n’est conservée que tronquée. L’ensemble de ces informations sont anonymisées dans le but de les publier en open data afin que tout tiers puissent reproduire nos conclusions. Conformément au règlement n°2016/679, dit Règlement général pour la protection des données et à la loi n°78-17 du 6 janvier 1978 modifiée relative à l'informatique, aux fichiers et aux libertés, vous disposez d'un droit d’opposition, d'accès, de rectification, de suppression, de limitation ou de portabilité portant sur les données vous concernant. Pour toute demande, vous pouvez contacter David Choffnes <choffnes@ccs.neu.edu>.\n\nDirecteur de la publication : David Choffnes";
+"FunctionalityText" = "Test de différenciation \n\nWehe analyse le trafic généré via l’application pour déterminer si l’opérateur bride ou priorise certains services (YouTube, Netflix, Spotify etc.). Le test s’effectue en deux étapes. Wehe simule une utilisation du service afin que l’opérateur traite le trafic généré comme il traiterait le trafic réel issu de ce service. Puis Wehe rejoue le même trafic en remplaçant le contenu en clair (nom de l’application et des serveurs utilisés, etc.) par du contenu chiffré, invisible pour l’opérateur. L’application compare ensuite les débits mesurés à ces deux étapes, répète à nouveau le test pour éliminer au maximum l’impact de l’état conjoncturel du réseau, et indique si une différence de traitement a été constatée.\n\nTest de ports \n\nLe test de détection des blocages de ports logiciels permet aux utilisateurs de contrôler 12 ports logiciels fréquemment utilisés. Il est réalisé en comparant le trafic https pour chacun de ces ports par rapport au trafic pour le port 443, utilisé comme port de référence. Le test est proposé avec un fichier de 10 Mo ou de 50 Mo (attention à la consommation de données pour les tests mobiles). En cas de dysfonctionnement, les éventuelles difficultés peuvent être relayées directement via la plateforme « J’alerte l’Arcep ». \n\nMentions légales\n\nPour le fonctionnement de l’application Wehe, la Northeastern University collecte votre géolocalisation uniquement si vous avez accepté de la partager ainsi que votre adresse IP qui n’est conservée que tronquée. L’ensemble de ces informations sont anonymisées dans le but de les publier en open data afin que tout tiers puissent reproduire nos conclusions. Conformément au règlement n°2016/679, dit Règlement général pour la protection des données et à la loi n°78-17 du 6 janvier 1978 modifiée relative à l'informatique, aux fichiers et aux libertés, vous disposez d'un droit d’opposition, d'accès, de rectification, de suppression, de limitation ou de portabilité portant sur les données vous concernant. Pour toute demande, vous pouvez contacter David Choffnes <choffnes@ccs.neu.edu>.\n\nDirecteur de la publication : David Choffnes";
 
 "NEU agreement text" = " j’accepte que la NEU recueille et traite les données me concernant nécessaires à l’analyse du trafic testé.";
 
@@ -352,3 +400,63 @@
 "Please rate us" = "Notez-nous !";
 
 "Take me to App Store" = "Notez dans l’App Store";
+
+"Video streaming" = "Vidéo";
+
+"Music streaming" = "Musique";
+
+"Videoconferencing" = "Visio";
+
+"50 MB file" = "Fichier de 50 Mo";
+
+"10 MB file" = "Fichier de 10 Mo";
+
+"Port 443 throughput" = "Débit de 443";
+
+"Test port throughput" = "Débit du port";
+
+"Run Port Tests" = "Test de ports";
+
+"Connection failed" = "Erreur de connexion";
+
+"Test blocked" = "Test bloqué";
+
+"Error connecting to sidechannel" = "Erreur de connexion";
+
+"Please select at least 2 ports to test" = "Si vous voulez lancer le test, sélectionnez au minimum 2 ports à tester";
+
+"Error connecting to sidechannel" = "Erreur de connexion";
+
+"Error creating sidechannel socket" = "Erreur de création de socket";
+
+"Unknown sidechannel error" = "Erreur inconnue";
+
+"Unknown permission error" = "Erreur d'autorisation inconnue";
+
+"Received malformed permissions" = "Autorisations reçues incorrectes";
+
+"Unknown permission status" = "Statut d'autorisation inconnu";
+
+"Replay does not match the replay on the server" = "Test inconnu du serveur, essayer avec un autre serveur";
+
+"A client with this IP is already connected" = "Un client avec la même IP est déjà connecté";
+
+"Server is low on resources, try again later" = "Serveur fortement sollicité, relancer le test ultérieurement";
+
+"Replay failed for unknown reason" = "Echec du test pour une raison inconnue";
+
+"Error mapping ports" = "Erreur dans l'ouverture du port";
+
+"Failed to send TCP packet" = "Echec d'envoi des paquets TCP";
+
+"Error declaring ID to sidechannel" = "Erreur d'identification";
+
+"Error reading permissions" = "Erreur d'autorisations";
+
+"Error sending mobile stats" = "Erreur lors de l'envoi des informations mobiles";
+
+"Error reading port mapping from server" = "Erreur dans l'ouverture du port côté serveur";
+
+"Error sending completion message" = "Erreur d'envoi du message de fin de test";
+
+"Error sending or receiving result message" = "Erreur d'envoi ou de réception du résultat";

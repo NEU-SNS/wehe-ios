@@ -34,4 +34,5 @@ class AppCollectionViewCell: UICollectionViewCell {
     @IBAction func switchFlipped(_ sender: Any) {
         app?.isSelected = selectionSwitch.isOn
     }
+
 }

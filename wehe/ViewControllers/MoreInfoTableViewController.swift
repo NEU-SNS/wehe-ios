@@ -29,7 +29,7 @@ class MoreInfoTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 140
         tableView.tableFooterView = UIView()
 
-        requestDPIResult()
+        // requestDPIResult()
     }
 
     private func requestDPIResult() {
@@ -47,14 +47,12 @@ class MoreInfoTableViewController: UITableViewController {
         if let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DPIInfoTableViewCell {
             cell.waiting()
         }
-        print(url)
-        print(parameters)
-        Alamofire.request(url, parameters: parameters).responseJSON { response in
+        AF.request(url, parameters: parameters).responseJSON { response in
             switch response.result {
-            case .success:
-                print(response.result.value!)
+            case .success(let value):
+                print(value)
                 self.haveConnection = true
-                let json = JSON(response.result.value!)
+                let json = JSON(value)
                 if json["success"] == true {
                     var dpiRuleStr = json["response"]["DPIrule"].stringValue
                     dpiRuleStr = dpiRuleStr.replacingOccurrences(of: "\'", with: "\"")
@@ -97,7 +95,7 @@ class MoreInfoTableViewController: UITableViewController {
                                       "carrierName": Helper.getCarrier() ?? "nil",
                                       "replayName": replayName]
         let url = Helper.makeURL(ip: settings!.serverIP, port: String(settings!.resultsPort), api: "Results")
-        Alamofire.request(url, parameters: parameters).responseJSON { _ in
+        AF.request(url, parameters: parameters).responseJSON { _ in
             // do nothing
         }
 
@@ -140,13 +138,17 @@ class MoreInfoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 90.0
+            return 140
+        }
+        if indexPath.row == 1 {
+            return 230
         }
         return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
+//      layout needs to be changed before showing ReplayTableViewCell at top. For example, overlapping content
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DiffResultCell") as? ReplayTableViewCell else {
                 break
@@ -160,7 +162,31 @@ class MoreInfoTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "BitrateInfoCell") as? BitrateInfoTableViewCell else {
                 break
             }
-            cell.textView.text = LocalizedStrings.MoreInfo.bitrateInfo
+            if app?.status == .error {
+                if (app?.errorString == LocalizedStrings.errors.connectionBlockError || app?.errorString == LocalizedStrings.ReplayRunner.errorReceivingPackets) && app?.isPortTest ?? false { // port test is blocked
+                    cell.textView.text = LocalizedStrings.MoreInfo.portBlockInfo
+                } else {
+                    cell.textView.text = app?.errorString
+                }
+            } else if app?.status == .receivedResults && app?.differentiation == .differentiation {
+                if app?.appThroughput ?? 1 < 0.0001 { // blocked?
+                    cell.textView.text = LocalizedStrings.MoreInfo.blockInfo
+                } else if app?.isPortTest ?? false { // port test
+                    if app?.prioritized ?? false { // prioritized
+                        cell.textView.text = LocalizedStrings.MoreInfo.prioritizedPortBitrateInfo
+                    } else { // throttled
+                        cell.textView.text = LocalizedStrings.MoreInfo.throttledPortBitrateInfo
+                    }
+                } else { // non-port test
+                    if app?.prioritized ?? false { // prioritized
+                        cell.textView.text = LocalizedStrings.MoreInfo.prioritizedBitrateInfo
+                    } else {
+                        cell.textView.text = LocalizedStrings.MoreInfo.throttledBitrateInfo
+                    }
+                }
+            } else { // show a default message in all other cases
+                cell.textView.text = LocalizedStrings.MoreInfo.defaultInfo
+            }
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DPIInfoCell") as? DPIInfoTableViewCell else {
